@@ -5,8 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>二年级数学选择题测验</title>
 <style>
-body {
-  font-family: "ZCOOL KuaiLe', 'Microsoft YaHei', sans-serif;
+body { 
+  font-family: "ZCOOL KuaiLe', 'Microsoft YaHei', sans-serif";
   font-size: 18px; 
   background: url('https://static.vecteezy.com/system/resources/previews/033/247/266/non_2x/abstract-background-pink-blue-pastel-color-free-vector.jpg') no-repeat center center fixed;
   background-size: cover;
@@ -21,10 +21,7 @@ h1 {
   margin-bottom: 20px;
 }
 
-#q-index {
-  font-size: 1.6rem;
-  margin-bottom: 15px;
-}
+#q-index { font-size: 1.6rem; margin-bottom: 15px; }
 
 #quiz-container {
   background: rgba(255,255,255,0.85);
@@ -38,19 +35,10 @@ h1 {
   animation: fadeIn 0.8s forwards, floatUpDown 3s ease-in-out infinite alternate;
 }
 
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-@keyframes floatUpDown {
-  0% { transform: translateY(0px); }
-  100% { transform: translateY(-6px); }
-}
+@keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes floatUpDown { 0% { transform: translateY(0px); } 100% { transform: translateY(-6px); } }
 
-#question {
-  font-size: 2rem;
-  margin-bottom: 25px;
-}
+#question { font-size: 2rem; margin-bottom: 25px; }
 
 .opt {
   font-size: 2.1rem;
@@ -63,10 +51,7 @@ h1 {
   box-shadow: 0 4px 12px rgba(0,0,0,0.2);
   transition: transform 0.15s, box-shadow 0.15s;
 }
-.opt:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 6px 16px rgba(0,0,0,0.3);
-}
+.opt:hover { transform: translateY(-3px); box-shadow: 0 6px 16px rgba(0,0,0,0.3); }
 .opt.correct { background: rgba(90,220,100,0.9); border-color: #56d56c; }
 .opt.wrong { background: rgba(255,200,200,0.9); border-color: #ff7b7b; }
 
@@ -80,35 +65,14 @@ h1 {
   margin-top: 20px;
 }
 #finishBtn { display:none; }
-#restart {
-  font-size: 1.3rem;
-  padding: 8px 18px;
-  margin-left: 12px;
-}
+#restart { font-size: 1.3rem; padding: 8px 18px; margin-left: 12px; }
 
-.score {
-  font-size: 1.6rem;
-  margin-top: 15px;
-}
-#result {
-  margin-top: 25px;
-  font-size: 2rem;
-  font-weight: bold;
-  text-align: center;
-  color: #1a1a1a;
-}
+.score { font-size: 1.6rem; margin-top: 15px; }
+#result { margin-top: 25px; font-size: 2rem; font-weight: bold; text-align: center; color: #1a1a1a; }
 
-#start-page {
-  text-align: center;
-  padding: 20px;
-}
+#start-page { text-align: center; padding: 20px; }
 #start-page input {
-  font-size: 1.4rem;
-  padding: 10px;
-  width: 70%;
-  margin: 10px 0;
-  border-radius: 10px;
-  border: 2px solid #aaa;
+  font-size: 1.4rem; padding: 10px; width: 70%; margin: 10px 0; border-radius: 10px; border: 2px solid #aaa;
 }
 </style>
 </head>
@@ -119,10 +83,8 @@ h1 {
 <!-- 第1页：输入名字、班级 -->
 <div id="start-page" style="display:block;">
   <h2>请输入你的资料</h2>
-  <input id="studentName" placeholder="名字 Name">
-  <br>
-  <input id="studentClass" placeholder="班级 Class">
-  <br>
+  <input id="studentName" placeholder="名字 Name"><br>
+  <input id="studentClass" placeholder="班级 Class"><br>
   <button id="startBtn">开始测验</button>
 </div>
 
@@ -183,33 +145,25 @@ const data = rawData.trim().split("\n").map(line=>{
   const answer = parts.pop().trim().toUpperCase();
   parts.shift();
   const full = parts.join(",").trim();
-
   const optStart = full.indexOf("A.");
-  const qtext = full.slice(0, optStart).trim();
+  const qtext = full.slice(0,optStart).trim();
   const optRaw = full.slice(optStart);
   const optParts = optRaw.split(/\s(?=[A-D]\.\s)/).map(s=>s.trim());
-
-  const opts = optParts.map(op => op.replace(/^[A-D]\.\s*/, ""));
+  const opts = optParts.map(op => op.replace(/^[A-D]\.\s*/,""));
   return { q: qtext, options: opts, answer: {A:0,B:1,C:2,D:3}[answer] };
 });
 
 // =================== 学生资料 ===================
-let studentName = "";
-let studentClass = "";
+let studentName="", studentClass="";
 
 // =================== 开始测验 ===================
 document.getElementById("startBtn").addEventListener("click", ()=>{
   studentName = document.getElementById("studentName").value.trim();
   studentClass = document.getElementById("studentClass").value.trim();
-
-  if(!studentName || !studentClass){
-    alert("请输入名字和班级！");
-    return;
-  }
+  if(!studentName || !studentClass){ alert("请输入名字和班级！"); return; }
 
   document.getElementById("start-page").style.display="none";
   document.getElementById("quiz-container").style.display="block";
-
   loadQuestion();
 });
 
@@ -219,21 +173,20 @@ document.getElementById("total").textContent = data.length;
 
 function loadQuestion(){
   answered=false;
-  document.getElementById("nextBtn").disabled = true;
-  document.getElementById("finishBtn").style.display = "none";
-  document.getElementById("result").textContent = "";
+  document.getElementById("nextBtn").disabled=true;
+  document.getElementById("finishBtn").style.display="none";
+  document.getElementById("result").textContent="";
 
   const q = data[current];
   document.getElementById("question").textContent = q.q;
   document.getElementById("cur").textContent = current+1;
 
   const optsDiv = document.getElementById("options");
-  optsDiv.innerHTML = "";
-
+  optsDiv.innerHTML="";
   q.options.forEach((opt,i)=>{
     const div = document.createElement("div");
-    div.className = "opt";
-    div.textContent = opt;
+    div.className="opt";
+    div.textContent=opt;
     div.addEventListener("click", ()=>selectOption(div,i));
     optsDiv.appendChild(div);
   });
@@ -241,7 +194,7 @@ function loadQuestion(){
 
 function selectOption(el,index){
   if(answered) return;
-  answered = true;
+  answered=true;
 
   const q = data[current];
   const all = document.querySelectorAll(".opt");
@@ -255,9 +208,7 @@ function selectOption(el,index){
   if(current === data.length-1){
     document.getElementById("finishBtn").style.display="inline-block";
     document.getElementById("nextBtn").style.display="none";
-  } else {
-    document.getElementById("nextBtn").disabled = false;
-  }
+  } else { document.getElementById("nextBtn").disabled=false; }
 }
 
 // =================== 下一题 ===================
@@ -266,23 +217,21 @@ document.getElementById("nextBtn").addEventListener("click", ()=>{
   loadQuestion();
 });
 
-// =================== 完成测验（已整合你的 GAS 链接） ===================
+// =================== 完成测验 ===================
 document.getElementById("finishBtn").addEventListener("click", ()=>{
-
   fetch("https://script.google.com/macros/s/AKfycbxjoRpoO1taYtFJsg2w02RCzViD_ZEDTx9mhyT-b96YbXyXCcDQmqKT3b5Y_T8qEKJ3_Q/exec", {
-  method: "POST",
-  headers: { "Content-Type": "application/json" },
-  body: JSON.stringify({
-    studentName: studentName,
-    className: studentClass,
-    score: score,
-    duration: "", 
-  })
-})
-.then(r => r.text())
-.then(t => console.log("GAS:", t));
+    method:"POST",
+    headers:{"Content-Type":"application/json"},
+    body: JSON.stringify({
+      studentName: studentName,
+      className: studentClass,
+      score: score,
+      duration: ""
     })
-  });
+  })
+  .then(r=>r.text())
+  .then(t=>console.log("GAS 回传：",t))
+  .catch(err=>console.error("上传 GAS 失败：",err));
 
   document.getElementById("result").innerHTML =
     `🎉 太棒啦，<strong>${studentName}</strong>（${studentClass}）！<br>
@@ -294,8 +243,7 @@ document.getElementById("finishBtn").addEventListener("click", ()=>{
 // =================== 重做 ===================
 document.getElementById("restart").addEventListener("click", ()=>{
   if(confirm("确定重做测验吗？")){
-    current=0;
-    score=0;
+    current=0; score=0;
     document.getElementById("score").textContent="得分：0";
     document.getElementById("nextBtn").style.display="inline-block";
     document.getElementById("nextBtn").disabled=true;
@@ -305,4 +253,3 @@ document.getElementById("restart").addEventListener("click", ()=>{
 </script>
 </body>
 </html>
-

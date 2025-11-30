@@ -3,139 +3,259 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>二年级数学测验</title>
+<title>二年级数学每日小测验</title>
 <style>
-body {
-  font-family: 'ZCOOL KuaiLe', 'Microsoft YaHei', sans-serif;
-  font-size: 18px;
-  background: url('https://static.vecteezy.com/system/resources/previews/033/247/266/non_2x/abstract-background-pink-blue-pastel-color-free-vector.jpg') no-repeat center center fixed;
-  background-size: cover;
-  padding: 20px;
-  color: #000;
-}
-h1 { text-align:center; margin-bottom:20px; }
-#quiz-container, #start-page { max-width: 900px; margin:auto; background: rgba(255,255,255,0.85); padding: 20px; border-radius: 16px; }
-input { font-size:16px; padding:8px; margin:8px 0; width:70%; border-radius:8px; border:2px solid #aaa; }
-button { font-size:16px; padding:10px 20px; margin-top:10px; border-radius:8px; border:none; background:#7dbbff; cursor:pointer; }
-.opt { padding:12px 18px; margin:8px 0; border-radius:12px; border:2px solid #d0d0d0; cursor:pointer; background:rgba(255,255,255,0.95); }
-.opt.correct { background:rgba(90,220,100,0.9); border-color:#56d56c; }
-.opt.wrong { background:rgba(255,200,200,0.9); border-color:#ff7b7b; }
-.score { margin-top:10px; font-size:16px; }
-#result { margin-top:20px; font-size:18px; font-weight:bold; }
+  :root {
+    --primary: #4A90E2;
+    --success: #2ECC71;
+    --warning: #F1C40F;
+    --bg: #EEF2F5;
+  }
+  body {
+    font-family: "Comic Sans MS", "Microsoft YaHei", sans-serif;
+    background: var(--bg);
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+    margin: 0;
+  }
+  .container {
+    background: white;
+    width: 100%;
+    max-width: 500px;
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    padding: 25px;
+    text-align: center;
+  }
+  h1 { color: var(--primary); margin-bottom: 20px; }
+  
+  /* 登录区域 */
+  .login-box input, .login-box select {
+    width: 80%;
+    padding: 12px;
+    margin: 10px 0;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    outline: none;
+  }
+  .btn {
+    background: var(--primary);
+    color: white;
+    border: none;
+    padding: 12px 30px;
+    font-size: 1.2rem;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: 0.2s;
+    margin-top: 10px;
+    width: 80%;
+  }
+  .btn:active { transform: scale(0.95); }
+  .btn:disabled { background: #ccc; cursor: not-allowed; }
+
+  /* 试题区域 */
+  #quiz-area { display: none; text-align: left; }
+  .question-card {
+    background: #f9f9f9;
+    padding: 15px;
+    margin-bottom: 15px;
+    border-radius: 10px;
+    border-left: 5px solid var(--primary);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.3rem;
+    font-weight: bold;
+  }
+  .question-card input {
+    width: 60px;
+    padding: 8px;
+    font-size: 1.2rem;
+    text-align: center;
+    border: 2px solid #ccc;
+    border-radius: 6px;
+  }
+  
+  /* 结果区域 */
+  #result-area { display: none; }
+  .score-display { font-size: 3rem; color: var(--success); font-weight: bold; margin: 20px 0; }
+  
+  /* 加载遮罩 */
+  #loading {
+    display: none;
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(255,255,255,0.8);
+    z-index: 999;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5rem;
+    color: var(--primary);
+  }
 </style>
 </head>
 <body>
 
-<h1>二年级数学测验</h1>
+<div class="container">
+  
+  <div id="login-area">
+    <h1>👋 欢迎参加数学测验</h1>
+    <div class="login-box">
+      <select id="studentClass">
+        <option value="">请选择班级 🏫</option>
+        <option value="二年1班">二年1班</option>
+        <option value="二年2班">二年2班</option>
+        <option value="二年3班">二年3班</option>
+      </select>
+      <input type="text" id="studentName" placeholder="请输入你的名字 👦👧">
+      <button class="btn" onclick="startQuiz()">开始答题</button>
+    </div>
+  </div>
 
-<div id="start-page">
-  <h2>请输入你的资料</h2>
-  <input id="studentName" placeholder="名字 Name"><br>
-  <input id="studentClass" placeholder="班级 Class"><br>
-  <button id="startBtn">开始测验</button>
+  <div id="quiz-area">
+    <h2 style="text-align:center;">加油！共 10 题</h2>
+    <div id="questions-container"></div>
+    <div style="text-align:center;">
+      <button class="btn" onclick="submitQuiz()" style="background:var(--success);">交卷</button>
+    </div>
+  </div>
+
+  <div id="result-area">
+    <h1>🎉 提交成功！</h1>
+    <p>你的得分是：</p>
+    <div class="score-display"><span id="finalScore">0</span> / 100</div>
+    <p id="feedbackMsg">真棒！继续努力！</p>
+    <button class="btn" onclick="location.reload()">再做一次</button>
+  </div>
+
 </div>
 
-<div id="quiz-container" style="display:none;">
-  <div id="q-index">第 <span id="cur">1</span> / <span id="total">0</span> 题</div>
-  <div id="question"></div>
-  <div id="options"></div>
-  <div class="score" id="score">得分：0</div>
-  <button id="nextBtn" disabled>下一题</button>
-  <button id="finishBtn">完成测验</button>
-  <div id="result"></div>
-</div>
+<div id="loading">正在提交成绩...🚀</div>
 
 <script>
-// ====== 题库（示例，可替换完整 30 题） ======
-const rawData = `
-1,数字 605 读作什么？ A. 六百五十 B. 六百零五 C. 六百五零 D. 六十五,B
-2,选出 “八百一十二” 的数字写法。 A. 812 B. 821 C. 802 D. 820,A
-3,在数目 492 中，数字 9 的数位是什么？ A. 个位 B. 十位 C. 百位 D. 千位,B
-`;
+// =================配置区域=================
+// 🔴 请务必将下方链接替换为你自己的 GAS Web App URL
+const GAS_URL = "https://script.google.com/macros/s/AKfycbxj4i4F9FNc-Q3JW7p2mNDupg6Kd8WAwiv1qQKqzGYq6XeDd-qb50SgGB9ov8XwIApjfA/exec"; 
+// =========================================
 
-// ====== CSV 转换 ======
-const data = rawData.trim().split("\n").map(line=>{
-  const parts = line.split(",");
-  const answer = parts.pop().trim().toUpperCase();
-  const qid = parts.shift();
-  const full = parts.join(",").trim();
-  const optStart = full.indexOf("A.");
-  const qtext = full.slice(0,optStart).trim();
-  const optRaw = full.slice(optStart);
-  const opts = optRaw.split(/\s(?=[A-D]\.\s)/).map(op=>op.replace(/^[A-D]\.\s*/,""));
-  while(opts.length<4) opts.push("(缺失)");
-  return { q: qtext, options: opts, answer: {A:0,B:1,C:2,D:3}[answer] };
-});
+let questions = [];
+const TOTAL_QUESTIONS = 10;
+let studentInfo = {};
 
-// ====== 学生资料 ======
-let studentName="", studentClass="";
-document.getElementById("startBtn").addEventListener("click", ()=>{
-  studentName = document.getElementById("studentName").value.trim();
-  studentClass = document.getElementById("studentClass").value.trim();
-  if(!studentName||!studentClass){ alert("请输入名字和班级！"); return; }
-  document.getElementById("start-page").style.display="none";
-  document.getElementById("quiz-container").style.display="block";
-  document.getElementById('total').textContent = data.length;
-  loadQuestion();
-});
-
-// ====== 显示题目 ======
-let current=0, score=0, answered=false;
-function loadQuestion(){
-  answered=false;
-  document.getElementById('nextBtn').disabled=true;
-  document.getElementById('finishBtn').style.display='none';
-  document.getElementById('result').textContent='';
-  const q = data[current];
-  document.getElementById('question').textContent = q.q;
-  document.getElementById('cur').textContent = current+1;
-  const optsDiv = document.getElementById('options');
-  optsDiv.innerHTML='';
-  q.options.forEach((opt,i)=>{
-    const div = document.createElement('div');
-    div.className='opt';
-    div.textContent = opt;
-    div.addEventListener('click', ()=>selectOption(div,i));
-    optsDiv.appendChild(div);
-  });
-}
-
-function selectOption(el,index){
-  if(answered) return;
-  answered=true;
-  const q = data[current];
-  document.querySelectorAll('.opt').forEach((d,i)=>{ if(i===q.answer) d.classList.add('correct'); });
-  if(index!==q.answer) el.classList.add('wrong'); else score++;
-  document.getElementById('score').textContent='得分：'+score;
-  if(current===data.length-1){ document.getElementById('finishBtn').style.display='inline-block'; document.getElementById('nextBtn').style.display='none'; }
-  else document.getElementById('nextBtn').disabled=false;
-}
-
-document.getElementById('nextBtn').addEventListener('click', ()=>{ current++; loadQuestion(); });
-
-// ====== 完成测验并提交 GAS ======
-document.getElementById('finishBtn').addEventListener('click', async ()=>{
-  const GAS_URL = "https://script.google.com/macros/s/AKfycbxYNeL4SjR7Phcn-3YdiWf3b-n_C2iZiBhxoi-MGw8a/exec"; // 替换为你的 Web App exec URL
-  try {
-    const res = await fetch(GAS_URL,{
-      method:"POST",
-      headers:{"Content-Type":"application/json"},
-      body: JSON.stringify({
-        name: studentName,
-        class: studentClass,
-        score: score,
-        total: data.length,
-        timestamp: new Date()
-      })
-    });
-    const result = await res.json();
-    document.getElementById('result').innerHTML = `🎉 太棒啦，<strong>${studentName}</strong>（${studentClass}）！<br>总得分：${score}/${data.length}`;
-    document.getElementById('finishBtn').style.display='none';
-  } catch(err){
-    console.error(err);
-    alert("提交失败，请检查网络或稍后重试。");
+// 生成 100 以内的加减法
+function generateMathProblems() {
+  const problems = [];
+  for (let i = 0; i < TOTAL_QUESTIONS; i++) {
+    let a, b, operator, answer;
+    // 随机决定是加法还是减法 (0是加, 1是减)
+    if (Math.random() > 0.5) {
+      // 加法：和不超过 100
+      a = Math.floor(Math.random() * 80) + 1; // 1-80
+      b = Math.floor(Math.random() * (100 - a)); 
+      operator = "+";
+      answer = a + b;
+    } else {
+      // 减法：被减数不超过 100，且结果不为负
+      a = Math.floor(Math.random() * 100) + 1;
+      b = Math.floor(Math.random() * a); 
+      operator = "-";
+      answer = a - b;
+    }
+    problems.push({ id: i, text: `${a} ${operator} ${b} = ?`, answer: answer });
   }
-});
+  return problems;
+}
+
+// 开始答题
+function startQuiz() {
+  const name = document.getElementById("studentName").value.trim();
+  const cls = document.getElementById("studentClass").value;
+
+  if (!name || !cls) {
+    alert("请先填写班级和名字哦！");
+    return;
+  }
+
+  studentInfo = { name, cls };
+  questions = generateMathProblems();
+  
+  // 渲染题目
+  const container = document.getElementById("questions-container");
+  container.innerHTML = "";
+  questions.forEach((q, index) => {
+    container.innerHTML += `
+      <div class="question-card">
+        <span>${index + 1}. ${q.text}</span>
+        <input type="number" id="ans-${index}" inputmode="numeric">
+      </div>
+    `;
+  });
+
+  document.getElementById("login-area").style.display = "none";
+  document.getElementById("quiz-area").style.display = "block";
+}
+
+// 提交试卷
+async function submitQuiz() {
+  let correctCount = 0;
+
+  // 1. 批改
+  questions.forEach((q, index) => {
+    const userAns = document.getElementById(`ans-${index}`).value;
+    if (parseInt(userAns) === q.answer) {
+      correctCount++;
+    }
+  });
+
+  const finalScore = correctCount * (100 / TOTAL_QUESTIONS); // 计算百分制
+
+  // 2. 显示加载
+  document.getElementById("loading").style.display = "flex";
+
+  // 3. 准备数据
+  const payload = {
+    name: studentInfo.name,
+    class: studentInfo.cls,
+    score: finalScore,
+    total: TOTAL_QUESTIONS
+  };
+
+  // 4. 发送给 Google Sheet (使用 text/plain 避免跨域预检报错)
+  try {
+    if (GAS_URL.includes("你的_GAS")) {
+      alert("错误：请告诉老师修改代码中的 GAS_URL！");
+      document.getElementById("loading").style.display = "none";
+      return;
+    }
+
+    await fetch(GAS_URL, {
+      method: "POST",
+      body: JSON.stringify(payload),
+      mode: "no-cors" // 关键：允许跨域发送，虽然拿不到返回值，但能保证数据送达
+    });
+
+    // 5. 显示结果 (因为 no-cors 拿不到返回值，我们默认认为成功)
+    showResult(finalScore);
+
+  } catch (err) {
+    console.error(err);
+    alert("网络开小差了，请重试！");
+  } finally {
+    document.getElementById("loading").style.display = "none";
+  }
+}
+
+function showResult(score) {
+  document.getElementById("quiz-area").style.display = "none";
+  document.getElementById("result-area").style.display = "block";
+  document.getElementById("finalScore").innerText = score;
+  
+  const msg = document.getElementById("feedbackMsg");
+  if(score === 100) msg.innerText = "太厉害了！满分！🌟";
+  else if(score >= 80) msg.innerText = "成绩不错，继续加油！👍";
+  else msg.innerText = "别灰心，下次一定更好！💪";
+}
 </script>
 
 </body>

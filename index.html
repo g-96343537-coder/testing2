@@ -1,131 +1,75 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>二年级数学选择题测验</title>
-  <style>
-    body {
-      font-family: "ZCOOL KuaiLe', 'Microsoft YaHei', sans-serif";
-      font-size: 18px;
-      background: url('https://static.vecteezy.com/system/resources/previews/033/247/266/non_2x/abstract-background-pink-blue-pastel-color-free-vector.jpg') no-repeat center center fixed;
-      background-size: cover;
-      padding: 20px;
-      color: #000;
-      overflow-x: hidden;
-    }
-    h1 {
-      font-size: 2.4rem;
-      text-align: center;
-      margin-bottom: 20px;
-    }
-    #q-index {
-      font-size: 1.6rem;
-      margin-bottom: 15px;
-    }
-    #quiz-container {
-      background: rgba(255,255,255,0.85);
-      padding: 24px 28px;
-      border-radius: 20px;
-      box-shadow: 0 8px 24px rgba(0,0,0,0.35), 0 0 20px rgba(255,255,255,0.2) inset;
-      backdrop-filter: blur(6px);
-      max-width: 900px;
-      margin: auto;
-      animation: fadeIn 0.8s forwards, floatUpDown 3s ease-in-out infinite alternate;
-    }
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-    @keyframes floatUpDown {
-      0% { transform: translateY(0px); }
-      100% { transform: translateY(-6px); }
-    }
-    #question {
-      font-size: 2rem;
-      margin-bottom: 25px;
-    }
-    .opt {
-      font-size: 2.1rem;
-      padding: 16px 22px;
-      margin-bottom: 18px;
-      border-radius: 16px;
-      border: 3px solid #d0d0d0;
-      background: rgba(255,255,255,0.95);
-      cursor: pointer;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-      transition: transform 0.15s, box-shadow 0.15s;
-    }
-    .opt:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 6px 16px rgba(0,0,0,0.3);
-    }
-    .opt.correct { background: rgba(90, 220, 100,0.9); border-color: #56d56c; }
-    .opt.wrong { background: rgba(255, 200, 200,0.9); border-color: #ff7b7b; }
-    #nextBtn, #finishBtn, #startBtn {
-      font-size: 1.6rem;
-      padding: 12px 26px;
-      background: #7dbbff;
-      border: none;
-      border-radius: 12px;
-      cursor: pointer;
-      margin-top: 20px;
-    }
-    #finishBtn { display: none; }
-    #restart {
-      font-size: 1.3rem;
-      padding: 8px 18px;
-      margin-left: 12px;
-    }
-    .score {
-      font-size: 1.6rem;
-      margin-top: 15px;
-    }
-    #result {
-      margin-top: 25px;
-      font-size: 2rem;
-      font-weight: bold;
-      text-align: center;
-      color: #1a1a1a;
-      text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
-    }
-    #start-page {
-      text-align: center;
-      padding: 20px;
-    }
-    #start-page input {
-      font-size: 1.4rem;
-      padding: 10px;
-      width: 70%;
-      margin: 10px 0;
-      border-radius: 10px;
-      border: 2px solid #aaa;
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>二年级数学选择题测验</title>
+<style>
+body {
+  font-family: "ZCOOL KuaiLe', 'Microsoft YaHei', sans-serif";
+  font-size: 18px;
+  background: url('https://static.vecteezy.com/system/resources/previews/033/247/266/non_2x/abstract-background-pink-blue-pastel-color-free-vector.jpg') no-repeat center center fixed;
+  background-size: cover;
+  padding: 20px;
+  color: #000;
+  overflow-x: hidden;
+}
+h1 { font-size: 2.4rem; text-align: center; margin-bottom: 20px; }
+#q-index { font-size: 1.6rem; margin-bottom: 15px; }
+#quiz-container {
+  background: rgba(255,255,255,0.85);
+  padding: 24px 28px;
+  border-radius: 20px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.35), 0 0 20px rgba(255,255,255,0.2) inset;
+  backdrop-filter: blur(6px);
+  max-width: 900px;
+  margin: auto;
+  animation: fadeIn 0.8s forwards, floatUpDown 3s ease-in-out infinite alternate;
+}
+@keyframes fadeIn { from { opacity:0; transform:translateY(20px); } to { opacity:1; transform:translateY(0);} }
+@keyframes floatUpDown { 0% { transform: translateY(0px); } 100% { transform: translateY(-6px);} }
+#question { font-size: 2rem; margin-bottom: 25px; }
+.opt {
+  font-size: 2.1rem; padding: 16px 22px; margin-bottom: 18px; border-radius: 16px;
+  border: 3px solid #d0d0d0; background: rgba(255,255,255,0.95); cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2); transition: transform 0.15s, box-shadow 0.15s;
+}
+.opt:hover { transform: translateY(-3px); box-shadow:0 6px 16px rgba(0,0,0,0.3);}
+.opt.correct { background: rgba(90,220,100,0.9); border-color: #56d56c; }
+.opt.wrong { background: rgba(255,200,200,0.9); border-color:#ff7b7b; }
+#nextBtn, #finishBtn, #startBtn {
+  font-size:1.6rem; padding:12px 26px; background:#7dbbff; border:none; border-radius:12px; cursor:pointer; margin-top:20px;
+}
+#finishBtn { display:none; }
+#restart { font-size:1.3rem; padding:8px 18px; margin-left:12px; }
+.score { font-size:1.6rem; margin-top:15px; }
+#result { margin-top:25px; font-size:2rem; font-weight:bold; text-align:center; color:#1a1a1a; text-shadow:1px 1px 3px rgba(0,0,0,0.2);}
+#start-page { text-align:center; padding:20px; }
+#start-page input { font-size:1.4rem; padding:10px; width:70%; margin:10px 0; border-radius:10px; border:2px solid #aaa;}
+</style>
 </head>
 <body>
+<h1>二年级数学选择题测验</h1>
 
-  <h1>二年级数学选择题测验</h1>
+<div id="start-page">
+  <h2>请输入你的资料</h2>
+  <input id="studentName" placeholder="名字 Name"><br>
+  <input id="studentClass" placeholder="班级 Class"><br>
+  <button id="startBtn">开始测验</button>
+</div>
 
-  <div id="start-page" style="display: block;">
-    <h2>请输入你的资料</h2>
-    <input id="studentName" placeholder="名字 Name"><br>
-    <input id="studentClass" placeholder="班级 Class"><br>
-    <button id="startBtn">开始测验</button>
+<div id="quiz-container" style="display:none;">
+  <div id="q-index">第 <span id="cur">1</span> / <span id="total">0</span> 题</div>
+  <div id="question"></div>
+  <div id="options"></div>
+  <div class="controls">
+    <div class="score" id="score">得分：0</div>
+    <button id="nextBtn" disabled>下一题</button>
+    <button id="finishBtn">完成测验</button>
+    <button id="restart">重做</button>
   </div>
-
-  <div id="quiz-container" style="display: none;">
-    <div id="q-index">第 <span id="cur">1</span> / <span id="total">0</span> 题</div>
-    <div id="question"></div>
-    <div id="options"></div>
-    <div class="controls">
-      <div class="score" id="score">得分：0</div>
-      <button id="nextBtn" disabled>下一题</button>
-      <button id="finishBtn">完成测验</button>
-      <button id="restart">重做</button>
-    </div>
-    <div id="result"></div>
-  </div>
+  <div id="result"></div>
+</div>
 
 <script>
 // ====== 题库 ======
@@ -161,120 +105,91 @@ const rawData = `
 29,一只猫有 4 条腿。5 只猫一共有多少条腿？ A. 9 B. 15 C. 20 D. 25,C
 30,老师有 40 颗糖果，每位学生分 10 颗，可以分给几位学生？ A. 3 B. 4 C. 10 D. 50,B
 `;
-const data = rawData.trim().split("\\n").map(line=>{
-  const parts = line.split(",");
-  const answer = parts.pop().trim().toUpperCase();
-  const qid = parts.shift();
-  const full = parts.join(",").trim();
-  const optStart = full.indexOf("A.");
-  const qtext = full.slice(0, optStart).trim();
-  const optRaw = full.slice(optStart);
-  const optParts = optRaw.split(/\\s(?=[A-D]\\.\\s)/).map(s=>s.trim());
-  const opts = optParts.map(op => op.replace(/^[A-D]\\.\\s*/, ""));
-  while (opts.length < 4) opts.push("(缺失)");
-  return { q: qtext, options: opts, answer: {A:0,B:1,C:2,D:3}[answer] };
+
+const data = rawData.trim().split("\n").map(line=>{
+  const parts=line.split(",");
+  const answer=parts.pop().trim().toUpperCase();
+  const qid=parts.shift();
+  const full=parts.join(",").trim();
+  const optStart=full.indexOf("A.");
+  const qtext=full.slice(0,optStart).trim();
+  const optRaw=full.slice(optStart);
+  const optParts=optRaw.split(/\s(?=[A-D]\.\s)/).map(s=>s.trim());
+  const opts=optParts.map(op=>op.replace(/^[A-D]\.\s*/,""));
+  while(opts.length<4) opts.push("(缺失)");
+  return {q:qtext,options:opts,answer:{A:0,B:1,C:2,D:3}[answer]};
 });
 
-// 学生资料
-let studentName = "", studentClass = "";
-let current = 0, score = 0, answered = false;
+let studentName="", studentClass="", current=0, score=0, answered=false;
 
-document.getElementById("startBtn").addEventListener("click", ()=>{
-  studentName = document.getElementById("studentName").value.trim();
-  studentClass = document.getElementById("studentClass").value.trim();
-  if (!studentName || !studentClass) {
-    alert("请输入名字和班级！");
-    return;
-  }
-  document.getElementById("start-page").style.display = "none";
-  document.getElementById("quiz-container").style.display = "block";
-  document.getElementById("total").textContent = data.length;
+document.getElementById("startBtn").addEventListener("click",()=>{
+  studentName=document.getElementById("studentName").value.trim();
+  studentClass=document.getElementById("studentClass").value.trim();
+  if(!studentName||!studentClass){ alert("请输入名字和班级！"); return; }
+  document.getElementById("start-page").style.display="none";
+  document.getElementById("quiz-container").style.display="block";
+  document.getElementById("total").textContent=data.length;
   loadQuestion();
 });
 
-function loadQuestion() {
-  answered = false;
-  document.getElementById("nextBtn").disabled = true;
-  document.getElementById("finishBtn").style.display = "none";
-  document.getElementById("result").textContent = "";
-  const q = data[current];
-  document.getElementById("question").textContent = q.q;
-  document.getElementById("cur").textContent = current + 1;
-  const optsDiv = document.getElementById("options");
-  optsDiv.innerHTML = "";
-  q.options.forEach((opt, i) => {
-    const div = document.createElement("div");
-    div.className = "opt";
-    div.textContent = opt;
-    div.addEventListener("click", () => selectOption(div, i));
+function loadQuestion(){
+  answered=false;
+  document.getElementById("nextBtn").disabled=true;
+  document.getElementById("finishBtn").style.display="none";
+  document.getElementById("result").textContent="";
+  const q=data[current];
+  document.getElementById("question").textContent=q.q;
+  document.getElementById("cur").textContent=current+1;
+  const optsDiv=document.getElementById("options");
+  optsDiv.innerHTML="";
+  q.options.forEach((opt,i)=>{
+    const div=document.createElement("div");
+    div.className="opt";
+    div.textContent=opt;
+    div.addEventListener("click",()=>selectOption(div,i));
     optsDiv.appendChild(div);
   });
 }
 
-function selectOption(el, index) {
-  if (answered) return;
-  answered = true;
-  const q = data[current];
-  const all = document.querySelectorAll(".opt");
-  all.forEach((d, i) => { if (i === q.answer) d.classList.add("correct"); });
-  if (index !== q.answer) el.classList.add("wrong");
+function selectOption(el,index){
+  if(answered) return;
+  answered=true;
+  const q=data[current];
+  document.querySelectorAll(".opt").forEach((d,i)=>{if(i===q.answer)d.classList.add("correct");});
+  if(index!==q.answer) el.classList.add("wrong");
   else score++;
-  document.getElementById("score").textContent = "得分：" + score;
-  if (current === data.length - 1) {
-    document.getElementById("finishBtn").style.display = "inline-block";
-    document.getElementById("nextBtn").style.display = "none";
-  } else {
-    document.getElementById("nextBtn").disabled = false;
-  }
+  document.getElementById("score").textContent="得分："+score;
+  if(current===data.length-1){
+    document.getElementById("finishBtn").style.display="inline-block";
+    document.getElementById("nextBtn").style.display="none";
+  } else { document.getElementById("nextBtn").disabled=false; }
 }
 
-document.getElementById("nextBtn").addEventListener("click", () => {
-  current++;
-  loadQuestion();
+document.getElementById("nextBtn").addEventListener("click",()=>{
+  current++; loadQuestion();
 });
 
-document.getElementById("finishBtn").addEventListener("click", async () => {
-  const postData = {
-    name: studentName,
-    class: studentClass,
-    score: score,
-    total: data.length,
-    timestamp: new Date().toLocaleString("zh-CN")
-  };
-
-  try {
-    const response = await fetch(
-      "https://script.google.com/macros/s/AKfycbw3nNvHZ-EmyexrhziWiiaQ-73d_ME1OBGHSToSLg9vSEzZp3aTu_VjZAfTAYs0vdA2/exec",
-      {
-        method: "POST",
-        headers: {"Content-Type": "application/json"},
-        body: JSON.stringify(postData)
-      }
+document.getElementById("finishBtn").addEventListener("click",async()=>{
+  const postData={name:studentName,class:studentClass,score:score,total:data.length,timestamp:new Date().toLocaleString("zh-CN")};
+  try{
+    const response=await fetch("https://script.google.com/macros/s/AKfycbxj4i4F9FNc-Q3JW7p2mNDupg6Kd8WAwiv1qQKqzGYq6XeDd-qb50SgGB9ov8XwIApjfA/exec",
+      {method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(postData)}
     );
-    const result = await response.json();
-    alert(result.message || "成绩已成功记录！");
-  } catch (err) {
-    console.error("GAS Error:", err);
-    alert("提交失败，请检查网络或稍后重试。");
-  }
-
-  document.getElementById("result").innerHTML =
-    `🎉 太棒啦，<strong>${studentName}</strong>（${studentClass}）！<br>
-     你完成了测验，总得分：${score} / ${data.length} 💪🌟`;
-  document.getElementById("finishBtn").style.display = "none";
+    const result=await response.json();
+    alert(result.message||"成绩已成功记录！");
+  }catch(err){ console.error("GAS Error:",err); alert("提交失败，请检查网络或稍后重试。"); }
+  document.getElementById("result").innerHTML=`🎉 太棒啦，<strong>${studentName}</strong>（${studentClass}）！<br>总得分：${score} / ${data.length} 💪🌟`;
+  document.getElementById("finishBtn").style.display="none";
 });
 
-document.getElementById("restart").addEventListener("click", () => {
-  if (confirm("确定重做测验吗？")) {
-    current = 0;
-    score = 0;
-    document.getElementById("score").textContent = "得分：0";
-    document.getElementById("nextBtn").style.display = "inline-block";
-    document.getElementById("nextBtn").disabled = true;
+document.getElementById("restart").addEventListener("click",()=>{
+  if(confirm("确定重做测验吗？")){
+    current=0; score=0; document.getElementById("score").textContent="得分：0";
+    document.getElementById("nextBtn").style.display="inline-block";
+    document.getElementById("nextBtn").disabled=true;
     loadQuestion();
   }
 });
 </script>
-
 </body>
 </html>

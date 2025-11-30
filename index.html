@@ -5,14 +5,25 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>二年级数学测验</title>
 <style>
-/* 样式同前面的学生端 HTML */
+body {
+  font-family: 'ZCOOL KuaiLe', 'Microsoft YaHei', sans-serif;
+  font-size: 18px;
+  background: #f0f0f0;
+  padding: 20px;
+}
+h1 { text-align: center; }
+#quiz-container, #start-page { max-width: 600px; margin:auto; }
+.opt { padding: 10px; border: 1px solid #ccc; margin:5px 0; cursor:pointer; }
+.opt.correct { background: #a2ffa2; }
+.opt.wrong { background: #ffa2a2; }
+button { padding: 10px 20px; margin-top: 10px; }
 </style>
 </head>
 <body>
-<h1>二年级数学选择题测验</h1>
+
+<h1>二年级数学测验</h1>
 
 <div id="start-page">
-  <h2>请输入你的资料</h2>
   <input id="studentName" placeholder="名字 Name"><br>
   <input id="studentClass" placeholder="班级 Class"><br>
   <button id="startBtn">开始测验</button>
@@ -22,18 +33,14 @@
   <div id="q-index">第 <span id="cur">1</span> / <span id="total">0</span> 题</div>
   <div id="question"></div>
   <div id="options"></div>
-  <div class="controls">
-    <div class="score" id="score">得分：0</div>
-    <button id="nextBtn" disabled>下一题</button>
-    <button id="finishBtn">完成测验</button>
-    <button id="restart">重做</button>
-  </div>
+  <div class="score" id="score">得分：0</div>
+  <button id="nextBtn" disabled>下一题</button>
+  <button id="finishBtn">完成测验</button>
   <div id="result"></div>
 </div>
 
 <script>
-// ====== 题库 ======
-// 简化示例，可替换为完整30题
+// ====== 题库示例 ======
 const rawData = `1,数字 605 读作什么？ A. 六百五十 B. 六百零五 C. 六百五零 D. 六十五,B`;
 
 const data = rawData.trim().split("\n").map(line=>{
@@ -42,19 +49,19 @@ const data = rawData.trim().split("\n").map(line=>{
   const qid = parts.shift();
   const full = parts.join(",").trim();
   const optStart = full.indexOf("A.");
-  const qtext = full.slice(0, optStart).trim();
+  const qtext = full.slice(0,optStart).trim();
   const optRaw = full.slice(optStart);
-  const optParts = optRaw.split(/\s(?=[A-D]\.\s)/).map(s=>s.trim());
-  const opts = optParts.map(op => op.replace(/^[A-D]\.\s*/, ""));
-  while (opts.length < 4) opts.push("(缺失)");
+  const opts = optRaw.split(/\s(?=[A-D]\.\s)/).map(op=>op.replace(/^[A-D]\.\s*/,""));
+  while(opts.length<4) opts.push("(缺失)");
   return { q: qtext, options: opts, answer: {A:0,B:1,C:2,D:3}[answer] };
 });
 
+// 学生资料
 let studentName="", studentClass="";
 document.getElementById("startBtn").addEventListener("click", ()=>{
   studentName = document.getElementById("studentName").value.trim();
   studentClass = document.getElementById("studentClass").value.trim();
-  if(!studentName || !studentClass){ alert("请输入名字和班级！"); return; }
+  if(!studentName||!studentClass){ alert("请输入名字和班级"); return; }
   document.getElementById("start-page").style.display="none";
   document.getElementById("quiz-container").style.display="block";
   document.getElementById('total').textContent = data.length;
@@ -64,7 +71,7 @@ document.getElementById("startBtn").addEventListener("click", ()=>{
 let current=0, score=0, answered=false;
 function loadQuestion(){
   answered=false;
-  document.getElementById('nextBtn').disabled = true;
+  document.getElementById('nextBtn').disabled=true;
   document.getElementById('finishBtn').style.display='none';
   document.getElementById('result').textContent='';
   const q = data[current];
@@ -75,8 +82,8 @@ function loadQuestion(){
   q.options.forEach((opt,i)=>{
     const div = document.createElement('div');
     div.className='opt';
-    div.textContent=opt;
-    div.addEventListener('click',()=>selectOption(div,i));
+    div.textContent = opt;
+    div.addEventListener('click', ()=>selectOption(div,i));
     optsDiv.appendChild(div);
   });
 }
@@ -88,8 +95,8 @@ function selectOption(el,index){
   document.querySelectorAll('.opt').forEach((d,i)=>{ if(i===q.answer) d.classList.add('correct'); });
   if(index!==q.answer) el.classList.add('wrong'); else score++;
   document.getElementById('score').textContent='得分：'+score;
-  if(current === data.length-1){ document.getElementById('finishBtn').style.display='inline-block'; document.getElementById('nextBtn').style.display='none'; }
-  else { document.getElementById('nextBtn').disabled=false; }
+  if(current===data.length-1){ document.getElementById('finishBtn').style.display='inline-block'; document.getElementById('nextBtn').style.display='none'; }
+  else document.getElementById('nextBtn').disabled=false;
 }
 
 document.getElementById('nextBtn').addEventListener('click', ()=>{ current++; loadQuestion(); });
@@ -97,36 +104,26 @@ document.getElementById('nextBtn').addEventListener('click', ()=>{ current++; lo
 document.getElementById('finishBtn').addEventListener('click', async ()=>{
   const GAS_URL = "https://script.google.com/macros/s/AKfycbxYNeL4SjR7Phcn-3YdiWf3b-n_C2iZiBhxoi-MGw8a/exec";
   try {
-    const res = await fetch(GAS_URL, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
+    const res = await fetch(GAS_URL,{
+      method:"POST",
+      headers:{"Content-Type":"application/json"},
       body: JSON.stringify({
         name: studentName,
         class: studentClass,
         score: score,
         total: data.length,
-        timestamp: new Date().toLocaleString("zh-CN")
+        timestamp: new Date()
       })
     });
     const result = await res.json();
-    console.log("提交结果：", result);
-    document.getElementById('result').innerHTML = `🎉 太棒啦，<strong>${studentName}</strong>（${studentClass}）！<br>你完成了测验，总得分：${score} / ${data.length} 💪🌟`;
+    document.getElementById('result').innerHTML = `🎉 太棒啦，<strong>${studentName}</strong>（${studentClass}）！<br>总得分：${score}/${data.length}`;
     document.getElementById('finishBtn').style.display='none';
   } catch(err){
     console.error(err);
     alert("提交失败，请检查网络或稍后重试。");
   }
 });
-
-document.getElementById('restart').addEventListener('click', ()=>{
-  if(confirm('确定重做测验吗？')){
-    current=0; score=0;
-    document.getElementById('score').textContent='得分：0';
-    document.getElementById('nextBtn').style.display='inline-block';
-    document.getElementById('nextBtn').disabled=true;
-    loadQuestion();
-  }
-});
 </script>
+
 </body>
 </html>

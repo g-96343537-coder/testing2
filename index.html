@@ -8,15 +8,20 @@
 body {
   font-family: 'ZCOOL KuaiLe', 'Microsoft YaHei', sans-serif;
   font-size: 18px;
-  background: #f0f0f0;
+  background: url('https://static.vecteezy.com/system/resources/previews/033/247/266/non_2x/abstract-background-pink-blue-pastel-color-free-vector.jpg') no-repeat center center fixed;
+  background-size: cover;
   padding: 20px;
+  color: #000;
 }
-h1 { text-align: center; }
-#quiz-container, #start-page { max-width: 600px; margin:auto; }
-.opt { padding: 10px; border: 1px solid #ccc; margin:5px 0; cursor:pointer; }
-.opt.correct { background: #a2ffa2; }
-.opt.wrong { background: #ffa2a2; }
-button { padding: 10px 20px; margin-top: 10px; }
+h1 { text-align:center; margin-bottom:20px; }
+#quiz-container, #start-page { max-width: 900px; margin:auto; background: rgba(255,255,255,0.85); padding: 20px; border-radius: 16px; }
+input { font-size:16px; padding:8px; margin:8px 0; width:70%; border-radius:8px; border:2px solid #aaa; }
+button { font-size:16px; padding:10px 20px; margin-top:10px; border-radius:8px; border:none; background:#7dbbff; cursor:pointer; }
+.opt { padding:12px 18px; margin:8px 0; border-radius:12px; border:2px solid #d0d0d0; cursor:pointer; background:rgba(255,255,255,0.95); }
+.opt.correct { background:rgba(90,220,100,0.9); border-color:#56d56c; }
+.opt.wrong { background:rgba(255,200,200,0.9); border-color:#ff7b7b; }
+.score { margin-top:10px; font-size:16px; }
+#result { margin-top:20px; font-size:18px; font-weight:bold; }
 </style>
 </head>
 <body>
@@ -24,6 +29,7 @@ button { padding: 10px 20px; margin-top: 10px; }
 <h1>二年级数学测验</h1>
 
 <div id="start-page">
+  <h2>请输入你的资料</h2>
   <input id="studentName" placeholder="名字 Name"><br>
   <input id="studentClass" placeholder="班级 Class"><br>
   <button id="startBtn">开始测验</button>
@@ -40,9 +46,14 @@ button { padding: 10px 20px; margin-top: 10px; }
 </div>
 
 <script>
-// ====== 题库示例 ======
-const rawData = `1,数字 605 读作什么？ A. 六百五十 B. 六百零五 C. 六百五零 D. 六十五,B`;
+// ====== 题库（示例，可替换完整 30 题） ======
+const rawData = `
+1,数字 605 读作什么？ A. 六百五十 B. 六百零五 C. 六百五零 D. 六十五,B
+2,选出 “八百一十二” 的数字写法。 A. 812 B. 821 C. 802 D. 820,A
+3,在数目 492 中，数字 9 的数位是什么？ A. 个位 B. 十位 C. 百位 D. 千位,B
+`;
 
+// ====== CSV 转换 ======
 const data = rawData.trim().split("\n").map(line=>{
   const parts = line.split(",");
   const answer = parts.pop().trim().toUpperCase();
@@ -56,18 +67,19 @@ const data = rawData.trim().split("\n").map(line=>{
   return { q: qtext, options: opts, answer: {A:0,B:1,C:2,D:3}[answer] };
 });
 
-// 学生资料
+// ====== 学生资料 ======
 let studentName="", studentClass="";
 document.getElementById("startBtn").addEventListener("click", ()=>{
   studentName = document.getElementById("studentName").value.trim();
   studentClass = document.getElementById("studentClass").value.trim();
-  if(!studentName||!studentClass){ alert("请输入名字和班级"); return; }
+  if(!studentName||!studentClass){ alert("请输入名字和班级！"); return; }
   document.getElementById("start-page").style.display="none";
   document.getElementById("quiz-container").style.display="block";
   document.getElementById('total').textContent = data.length;
   loadQuestion();
 });
 
+// ====== 显示题目 ======
 let current=0, score=0, answered=false;
 function loadQuestion(){
   answered=false;
@@ -101,8 +113,9 @@ function selectOption(el,index){
 
 document.getElementById('nextBtn').addEventListener('click', ()=>{ current++; loadQuestion(); });
 
+// ====== 完成测验并提交 GAS ======
 document.getElementById('finishBtn').addEventListener('click', async ()=>{
-  const GAS_URL = "https://script.google.com/macros/s/AKfycbxYNeL4SjR7Phcn-3YdiWf3b-n_C2iZiBhxoi-MGw8a/exec";
+  const GAS_URL = "https://script.google.com/macros/s/AKfycbxYNeL4SjR7Phcn-3YdiWf3b-n_C2iZiBhxoi-MGw8a/exec"; // 替换为你的 Web App exec URL
   try {
     const res = await fetch(GAS_URL,{
       method:"POST",

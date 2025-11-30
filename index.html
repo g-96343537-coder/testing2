@@ -3,33 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>二年级数学选择题测验</title>
+<title>二年级数学测验</title>
 <style>
-body {
-  font-family: "ZCOOL KuaiLe', 'Microsoft YaHei', sans-serif;
-  font-size: 18px;
-  background: url('https://static.vecteezy.com/system/resources/previews/033/247/266/non_2x/abstract-background-pink-blue-pastel-color-free-vector.jpg') no-repeat center center fixed;
-  background-size: cover;
-  padding: 20px;
-  color: #000;
-  overflow-x: hidden;
-}
-h1 { font-size: 2.4rem; text-align: center; margin-bottom: 20px; }
-#quiz-container { background: rgba(255,255,255,0.85); padding: 24px 28px; border-radius: 20px; max-width: 900px; margin: auto; }
-.opt { font-size: 2.1rem; padding: 16px 22px; margin-bottom: 18px; border-radius: 16px; border: 3px solid #d0d0d0; background: rgba(255,255,255,0.95); cursor: pointer; }
-.opt.correct { background: rgba(90,220,100,0.9); border-color: #56d56c; }
-.opt.wrong { background: rgba(255,200,200,0.9); border-color: #ff7b7b; }
-#nextBtn, #finishBtn, #startBtn { font-size: 1.6rem; padding: 12px 26px; background: #7dbbff; border: none; border-radius: 12px; cursor: pointer; margin-top: 20px; }
-#finishBtn { display:none; }
-#restart { font-size: 1.3rem; padding: 8px 18px; margin-left: 12px; }
-#start-page { text-align: center; padding: 20px; }
-#start-page input { font-size: 1.4rem; padding: 10px; width: 70%; margin: 10px 0; border-radius: 10px; border: 2px solid #aaa; }
-#score { font-size: 1.6rem; margin-top: 15px; }
-#result { margin-top: 25px; font-size: 2rem; font-weight: bold; text-align: center; color: #1a1a1a; }
+/* 样式同前面的学生端 HTML */
 </style>
 </head>
 <body>
-
 <h1>二年级数学选择题测验</h1>
 
 <div id="start-page">
@@ -54,15 +33,9 @@ h1 { font-size: 2.4rem; text-align: center; margin-bottom: 20px; }
 
 <script>
 // ====== 题库 ======
-const rawData = `
-1,数字 605 读作什么？ A. 六百五十 B. 六百零五 C. 六百五零 D. 六十五,B
-2,选出 “八百一十二” 的数字写法。 A. 812 B. 821 C. 802 D. 820,A
-3,在数目 492 中，数字 9 的数位是什么？ A. 个位 B. 十位 C. 百位 D. 千位,B
-...
-30,老师有 40 颗糖果，每位学生分 10 颗，可以分给几位学生？ A. 3 B. 4 C. 10 D. 50,B
-`;
+// 简化示例，可替换为完整30题
+const rawData = `1,数字 605 读作什么？ A. 六百五十 B. 六百零五 C. 六百五零 D. 六十五,B`;
 
-// ====== CSV 转换 ======
 const data = rawData.trim().split("\n").map(line=>{
   const parts = line.split(",");
   const answer = parts.pop().trim().toUpperCase();
@@ -77,10 +50,7 @@ const data = rawData.trim().split("\n").map(line=>{
   return { q: qtext, options: opts, answer: {A:0,B:1,C:2,D:3}[answer] };
 });
 
-// ====== 学生资料 ======
 let studentName="", studentClass="";
-
-// ====== 开始按钮 ======
 document.getElementById("startBtn").addEventListener("click", ()=>{
   studentName = document.getElementById("studentName").value.trim();
   studentClass = document.getElementById("studentClass").value.trim();
@@ -91,7 +61,6 @@ document.getElementById("startBtn").addEventListener("click", ()=>{
   loadQuestion();
 });
 
-// ====== 显示题目 ======
 let current=0, score=0, answered=false;
 function loadQuestion(){
   answered=false;
@@ -123,10 +92,8 @@ function selectOption(el,index){
   else { document.getElementById('nextBtn').disabled=false; }
 }
 
-// ====== 下一题 ======
 document.getElementById('nextBtn').addEventListener('click', ()=>{ current++; loadQuestion(); });
 
-// ====== 完成测验（提交到 GAS） ======
 document.getElementById('finishBtn').addEventListener('click', async ()=>{
   const GAS_URL = "https://script.google.com/macros/s/AKfycbxYNeL4SjR7Phcn-3YdiWf3b-n_C2iZiBhxoi-MGw8a/exec";
   try {
@@ -151,7 +118,6 @@ document.getElementById('finishBtn').addEventListener('click', async ()=>{
   }
 });
 
-// ====== 重做 ======
 document.getElementById('restart').addEventListener('click', ()=>{
   if(confirm('确定重做测验吗？')){
     current=0; score=0;

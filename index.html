@@ -3,27 +3,27 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Preposition Practice (Year 3)</title>
+<title>Year 4 English Quiz (Prepositions)</title>
 <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 <script src="https://accounts.google.com/gsi/client" async defer></script>
+<link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&display=swap" rel="stylesheet">
+
 <style>
 /* ====== 全局样式 (Global Styles) ====== */
 :root {
-  --primary-color: #6a0572; /* 深紫色 */
-  --secondary-color: #ab2346; /* 莓红色 */
-  --accent-light: #f7cac9; /* 浅粉高光 */
-  --accent-gold: #ffdf00; /* 金色 */
+  --primary-color: #4a90e2; /* 活泼的亮蓝色 */
+  --secondary-color: #ff9f43; /* 活力橙色 */
   --success-green: #2ecc71;
-  --error-red: #e74c3c;
-  --text-dark: #333333;
-  --card-bg: rgba(255, 255, 255, 0.95);
+  --error-red: #ee5253;
+  --text-dark: #2c3e50;
+  --card-bg: rgba(255, 255, 255, 0.85); /* 半透明白色 */
 }
 
 body {
-  font-family: 'Poppins', 'Segoe UI', sans-serif;
-  font-size: 18px;
-  /* 背景图：可爱的小熊猫 */
-  background: linear-gradient(rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.6)), url('https://images.hdqwalls.com/wallpapers/red-panda-cute-25.jpg') no-repeat center center fixed;
+  font-family: 'Comic Neue', 'Comic Sans MS', sans-serif; /* 儿童风格字体 */
+  font-size: 20px;
+  /* 背景图：明亮的卡通风景，适合儿童 */
+  background: url('https://img.freepik.com/free-vector/hand-drawn-fantasy-nature-background_23-2149021507.jpg?w=1380&t=st=1708415000~exp=1708415600~hmac=abcd') no-repeat center center fixed;
   background-size: cover;
   min-height: 100vh;
   padding: 20px;
@@ -36,21 +36,25 @@ body {
 
 #wrapper {
   background: var(--card-bg);
-  padding: 40px;
-  border-radius: 24px;
-  max-width: 700px;
+  /* 玻璃拟态效果：背景模糊 */
+  backdrop-filter: blur(10px); 
+  -webkit-backdrop-filter: blur(10px);
+  padding: 35px;
+  border-radius: 30px; /* 更圆润的边角 */
+  max-width: 750px;
   width: 100%;
-  box-shadow: 0 15px 35px rgba(0,0,0,0.2);
-  border-top: 8px solid var(--primary-color);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.2); /* 柔和阴影 */
+  border: 4px solid #fff; /* 白色边框增加可爱感 */
 }
 
 h1 {
-  font-size: 2.2rem;
+  font-size: 2.5rem;
   text-align: center;
-  margin-bottom: 25px;
+  margin-bottom: 20px;
   color: var(--primary-color);
-  text-shadow: 2px 2px 0px var(--accent-light);
-  font-weight: 800;
+  text-shadow: 2px 2px 0px #fff;
+  font-weight: 700;
+  letter-spacing: 1px;
 }
 
 /* ====== 登录画面样式 ====== */
@@ -63,33 +67,36 @@ h1 {
 
 .input-group label {
   display: block;
-  font-size: 1.2rem;
+  font-size: 1.4rem;
   margin-bottom: 10px;
   font-weight: bold;
-  color: #555;
+  color: #576574;
 }
 
 .input-group select {
   width: 80%;
-  padding: 12px;
-  font-size: 1.1rem;
-  border: 2px solid #ccc;
-  border-radius: 12px;
+  padding: 15px;
+  font-size: 1.2rem;
+  border: 3px solid #dfe4ea;
+  border-radius: 20px;
   background: #fff;
   cursor: pointer;
-  transition: border 0.3s;
+  transition: all 0.3s;
+  font-family: inherit;
+  color: #2f3542;
 }
 .input-group select:focus {
-  border-color: var(--primary-color);
+  border-color: var(--secondary-color);
   outline: none;
+  box-shadow: 0 0 10px rgba(255, 159, 67, 0.3);
 }
 
 /* Google 按钮区域 */
 .google-area {
-  background: #fdf2f7; /* 浅粉色背景块 */
+  background: rgba(255, 255, 255, 0.6);
   padding: 25px;
-  border-radius: 16px;
-  border: 2px dashed var(--secondary-color);
+  border-radius: 25px;
+  border: 3px dashed var(--primary-color);
   margin-top: 20px;
   display: flex;
   flex-direction: column;
@@ -98,8 +105,8 @@ h1 {
 
 .google-area h3 {
   margin-top: 0;
-  color: var(--secondary-color);
-  font-size: 1.1rem;
+  color: var(--primary-color);
+  font-size: 1.3rem;
 }
 
 /* 欢迎信息 */
@@ -107,99 +114,140 @@ h1 {
   display: none;
   margin-top: 15px;
   padding: 15px;
-  background-color: #e6ffe6;
-  border-radius: 10px;
-  color: #006400;
-  border: 2px solid #90ee90;
+  background-color: #dff9fb;
+  border-radius: 15px;
+  color: #130f40;
+  border: 2px solid #7ed6df;
+  font-weight: bold;
 }
 
-/* 手动开始按钮 (登录后出现) */
+/* 手动开始按钮 */
 #manualStartBtn {
   display: none;
-  font-size: 1.3rem;
-  padding: 12px 30px;
-  background: var(--primary-color);
+  font-size: 1.5rem;
+  padding: 12px 40px;
+  background: var(--secondary-color);
   color: white;
   border: none;
   border-radius: 50px;
   cursor: pointer;
-  margin-top: 15px;
-  box-shadow: 0 4px 0 #4a044d;
+  margin-top: 20px;
+  box-shadow: 0 6px 0 #e67e22; /* 3D 按钮效果 */
   transition: transform 0.1s;
+  font-family: inherit;
+  font-weight: bold;
 }
-#manualStartBtn:active { transform: translateY(4px); box-shadow: none; }
+#manualStartBtn:active { transform: translateY(6px); box-shadow: none; }
+#manualStartBtn:hover { background: #ffaf40; }
 
 /* ====== 测验区域样式 ====== */
 #quiz-content { display: none; }
 
 #student-info-display {
   text-align: right;
-  font-size: 0.95rem;
-  color: var(--primary-color);
+  font-size: 1.1rem;
+  color: #576574;
   margin-bottom: 15px;
-  border-bottom: 1px dashed #ccc;
-  padding-bottom: 5px;
+  border-bottom: 2px dashed #bdc3c7;
+  padding-bottom: 8px;
   font-weight: bold;
 }
 
-#q-index { font-weight: bold; color: #777; margin-bottom: 10px; }
-#question { font-size: 1.6rem; margin-bottom: 25px; line-height: 1.4; font-weight: 600; }
+#q-index { 
+    font-weight: bold; 
+    color: var(--primary-color); 
+    margin-bottom: 10px; 
+    font-size: 1.2rem;
+}
+#question { 
+    font-size: 1.8rem; 
+    margin-bottom: 30px; 
+    line-height: 1.4; 
+    font-weight: 700; 
+    color: #2c3e50;
+}
 
 .opt {
-  font-size: 1.2rem;
-  padding: 15px 20px;
+  font-size: 1.3rem;
+  padding: 18px 25px;
   margin-bottom: 15px;
-  border-radius: 12px;
-  border: 2px solid #e0e0e0;
+  border-radius: 20px;
+  border: 3px solid #f1f2f6;
   background: #fff;
   cursor: pointer;
   transition: all 0.2s;
   position: relative;
+  font-weight: 600;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.05);
 }
-.opt:hover { background: #fef0f5; border-color: var(--secondary-color); }
-.opt.correct { background: #d4edda; border-color: #28a745; color: #155724; }
-.opt.wrong { background: #f8d7da; border-color: #dc3545; color: #721c24; }
+.opt:hover { 
+    background: #f0f8ff; 
+    border-color: var(--primary-color); 
+    transform: scale(1.02);
+}
+.opt.correct { background: #dff9fb; border-color: #2ecc71; color: #27ae60; }
+.opt.wrong { background: #ff7675; border-color: #d63031; color: white; }
 
 .controls { margin-top: 30px; text-align: center; }
 
 #nextBtn {
-  font-size: 1.2rem;
-  padding: 12px 35px;
-  background: var(--secondary-color);
+  font-size: 1.4rem;
+  padding: 14px 40px;
+  background: var(--primary-color);
   color: white;
   border: none;
-  border-radius: 30px;
+  border-radius: 40px;
   cursor: pointer;
-  box-shadow: 0 4px 0 #8a1c38;
+  box-shadow: 0 6px 0 #2980b9;
+  font-family: inherit;
+  font-weight: bold;
+  transition: all 0.1s;
 }
-#nextBtn:disabled { background: #ccc; box-shadow: none; cursor: not-allowed; }
+#nextBtn:active { transform: translateY(6px); box-shadow: none; }
+#nextBtn:disabled { background: #bdc3c7; box-shadow: none; cursor: not-allowed; transform: none; }
 
-.score { font-size: 1.5rem; margin-top: 20px; font-weight: bold; color: var(--accent-gold); text-shadow: 1px 1px 0 #aaa; }
+.score { 
+    font-size: 1.8rem; 
+    margin-top: 25px; 
+    font-weight: 800; 
+    color: var(--secondary-color); 
+    text-shadow: 1px 1px 0 #fff; 
+}
 
 /* 最终结果 */
 .result-box {
-    padding: 20px;
-    border-radius: 15px;
+    padding: 25px;
+    border-radius: 20px;
     margin-top: 20px;
-    font-size: 1.2rem;
+    font-size: 1.3rem;
+}
+
+/* 移动端适配 */
+@media (max-width: 600px) {
+    h1 { font-size: 1.8rem; }
+    #question { font-size: 1.4rem; }
+    .opt { font-size: 1.1rem; padding: 15px; }
 }
 </style>
 </head>
 <body>
 
 <div id="wrapper">
-  <h1>Preposition Practice (Year 3)</h1>
+  <h1>English Prepositions <br><span style="font-size:0.7em; color:#ff9f43;">(Year 4)</span></h1>
 
   <div id="start-screen">
       <div class="input-group">
           <label for="student-class">Step 1: Choose Your Class (选择班级)</label>
           <select id="student-class">
-              <option value="">-- Select Class --</option>
-              <option value="3M">3M</option>
-              <option value="3K">3K</option>
-              <option value="3B">3B</option>
-              <option value="3H">3H</option>
-              <option value="3J">3J</option>
+              <option value="">-- Sila Pilih Kelas --</option>
+              <option value="4M">4M</option>
+              <option value="4K">4K</option>
+              <option value="4B">4B</option>
+              <option value="4H">4H</option>
+              <option value="4J">4J</option>
+              <option value="4U">4U</option>
+              <option value="4P">4P</option>
+              <option value="4C">4C</option>
           </select>
       </div>
 
@@ -215,7 +263,7 @@ h1 {
           <div class="g_id_signin"
                data-type="standard"
                data-size="large"
-               data-theme="outline"
+               data-theme="filled_blue"
                data-text="sign_in_with"
                data-shape="pill"
                data-logo_alignment="left">
@@ -242,31 +290,40 @@ h1 {
 </div>
 
 <script>
-// ====== Google Script URL (用于提交分数) ======
-const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbw7wxRG1ma7VOP5cW6n7Rj3kaAu4Ub592p5icpn4Uqi11vyHfqqz7JCICuC1NQgm8uaLg/exec";
+// ====== Google Script URL (保持不变) ======
+const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwd9UKzaZRU8OAVn2deSCuOLWsMppPuR8ZycCIS2WAGXh3DIPpzLUkLyshuyeV9emt-5A/exec";
 
-// ====== 题目数据 (Year 3 Prepositions) ======
+// ====== 题目数据 (Year 4 Prepositions - 4 Options) ======
 const rawData = `
-1,I wake up ____ 6:00 a.m. every morning. A. on B. in C. at,C
-2,Pour the orange juice ____ the glass, please. A. on B. into C. at,B
-3,My birthday is ____ August. A. on B. at C. in,C
-4,We play football ____ the evening. A. in B. on C. at,A
-5,The boy walked ____ the road carefully. A. into B. across C. in,B
-6,The bank is ____ the police station. A. opposite B. in C. on,A
-7,He goes to the library ____ Saturdays. A. in B. at C. on,C
-8,The cat jumped ____ the fence. A. in B. over C. at,B
-9,We walked ____ the beach and collected seashells. A. along B. into C. at,A
-10,Please take your books ____ your bag. A. out of B. into C. up,A
+1,The teacher shared the sweets ____ all the students in the class. A. between B. among C. through D. against,B
+2,The train went ____ the dark tunnel. A. across B. over C. through D. on,C
+3,Please do not talk ____ the examination. A. during B. at C. on D. by,A
+4,He leaned his bicycle ____ the wall before entering the shop. A. on B. against C. over D. to,B
+5,My father goes to work ____ car every morning. A. in B. on C. with D. by,D
+6,The earth moves ____ the sun. A. around B. across C. through D. between,A
+7,The dog ran ____ the gate when it saw a stranger. A. towards B. on C. at D. in,A
+8,There is a bridge ____ the river. A. under B. through C. over D. in,C
+9,We usually have our assembly ____ Monday mornings. A. in B. at C. on D. during,C
+10,The secret is just ____ you and me. A. among B. between C. to D. with,B
 `;
 
+// ====== 数据处理逻辑 (已更新为处理 4 个选项) ======
 const data = rawData.trim().split("\n").map(line=>{
   const parts = line.split(",");
-  const answer = parts.pop().trim().toUpperCase();
-  const full = parts.join(",").trim();
+  const answerChar = parts.pop().trim().toUpperCase(); // 答案字母
+  const full = parts.join(",").trim(); // 完整题目+选项
+  
+  // 查找 A. 的位置来分割题目和选项
   const optStart = full.indexOf("A.");
   const qtext = full.slice(0, optStart).trim();
-  const optParts = full.slice(optStart).split(/\s(?=[A-C]\.\s)/).map(s=>s.trim().replace(/^[A-C]\.\s*/, ""));
-  return { q: qtext, options: optParts, answer: {A:0,B:1,C:2}[answer] };
+  
+  // 使用正则分割 A-D 选项
+  const optParts = full.slice(optStart).split(/\s(?=[A-D]\.\s)/).map(s=>s.trim().replace(/^[A-D]\.\s*/, ""));
+  
+  // 答案映射: A=0, B=1, C=2, D=3
+  const map = {A:0, B:1, C:2, D:3};
+  
+  return { q: qtext, options: optParts, answer: map[answerChar] };
 });
 
 // ====== 全局变量 ======
@@ -287,9 +344,8 @@ const gBtn = document.querySelector('.g_id_signin');
 
 document.getElementById('total').textContent = data.length;
 
-// ====== 1. Google 登录逻辑 ======
+// ====== 1. Google 登录逻辑 (保持不变) ======
 
-// 解码 JWT Token 获取用户信息
 function parseJwt (token) {
     var base64Url = token.split('.')[1];
     var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
@@ -299,27 +355,21 @@ function parseJwt (token) {
     return JSON.parse(jsonPayload);
 }
 
-// Google 登录回调函数
 function handleCredentialResponse(response) {
-    // 1. 获取用户信息
     const responsePayload = parseJwt(response.credential);
     studentName = responsePayload.name;
     studentEmail = responsePayload.email;
     
-    // 2. 隐藏 Google 按钮，显示欢迎信息
     gBtn.style.display = 'none';
     welcomeMsg.style.display = 'block';
-    welcomeMsg.innerHTML = `<strong>Hi, ${studentName}!</strong><br><span style="font-size:0.9em; color:#666;">${studentEmail}</span>`;
+    welcomeMsg.innerHTML = `👋 <strong>Hi, ${studentName}!</strong><br><span style="font-size:0.9em; color:#555;">${studentEmail}</span>`;
     
-    // 3. 检查是否选择了班级，如果选了，显示开始按钮
     checkClassAndReady();
 }
 
-// 监听班级选择变化
 classInput.addEventListener('change', checkClassAndReady);
 
 function checkClassAndReady() {
-    // 只有当“已登录”且“已选班级”时，才显示开始按钮
     if (studentName && classInput.value) {
         studentClass = classInput.value;
         manualStartBtn.style.display = 'inline-block';
@@ -328,20 +378,19 @@ function checkClassAndReady() {
     }
 }
 
-// 点击开始按钮
 manualStartBtn.addEventListener('click', () => {
     if(!classInput.value) {
-        alert("Please select your class first!");
+        alert("Sila pilih kelas dahulu! (Please select class!)");
         return;
     }
     startQuiz();
 });
 
-// ====== 2. 测验逻辑 ======
+// ====== 2. 测验逻辑 (已支持4选项) ======
 function startQuiz() {
     startScreen.style.display = 'none';
     quizContent.style.display = 'block';
-    document.getElementById('student-info-display').textContent = `Student: ${studentName} (${studentClass})`; 
+    document.getElementById('student-info-display').textContent = `Murid: ${studentName} (${studentClass})`; 
     loadQuestion();
 }
 
@@ -365,7 +414,9 @@ function loadQuestion(){
   q.options.forEach((opt,i)=>{
     const div = document.createElement('div');
     div.className='opt';
-    div.innerHTML = opt;
+    // 添加 A, B, C, D 标签
+    const label = String.fromCharCode(65 + i); 
+    div.innerHTML = `<span style="font-weight:bold; color:var(--primary-color); margin-right:8px;">${label}.</span> ${opt}`;
     div.addEventListener('click',()=>selectOption(div,i));
     optsDiv.appendChild(div);
   });
@@ -383,10 +434,16 @@ function selectOption(el, index){
   const q = data[current];
   const all = document.querySelectorAll('.opt');
   
-  all.forEach((d,i)=>{ if(i === q.answer) d.classList.add('correct'); });
+  all.forEach((d,i)=>{ 
+      if(i === q.answer) {
+          d.classList.add('correct');
+          d.innerHTML += ' <span style="float:right;">✔</span>';
+      }
+  });
   
   if(index !== q.answer) {
       el.classList.add('wrong'); 
+      el.innerHTML += ' <span style="float:right;">✖</span>';
   } else {
       score++;
   }
@@ -414,8 +471,6 @@ function submitToGoogleSheet() {
     formData.append("class", studentClass);
     formData.append("score", score);
     formData.append("total", data.length);
-    // 可选：如果你想在后台收集邮箱，可以取消下面注释
-    // formData.append("email", studentEmail); 
 
     fetch(SCRIPT_URL, {
         method: 'POST',
@@ -434,15 +489,15 @@ function submitToGoogleSheet() {
 function showFinalResult(isSuccess) {
     let msg = isSuccess ? 
         `<div class="result-box" style="background:#eafaf1; color:#2ecc71; border:2px solid #2ecc71;">
-            ✅ <strong>Success!</strong> Your result has been submitted.
+            ✅ <strong>Berjaya! (Success)</strong><br>Your result has been sent to the teacher.
         </div>` : 
         `<div class="result-box" style="background:#fdedec; color:#e74c3c; border:2px solid #e74c3c;">
-            ⚠️ <strong>Connection Error!</strong> Please screenshot this page and send to your teacher.
+            ⚠️ <strong>Connection Error!</strong><br>Please screenshot this page and send to your teacher.
         </div>`;
 
     quizContent.innerHTML = `
         <div style="text-align:center; padding: 30px;">
-            <h2>Good Job, ${studentName}!</h2>
+            <h2>Great Job, ${studentName}!</h2>
             <p style="color:#666;">Class: ${studentClass}</p>
             
             <div style="font-size: 4rem; margin: 20px 0; color: var(--primary-color); font-weight:bold;">
@@ -452,8 +507,8 @@ function showFinalResult(isSuccess) {
             ${msg}
             
             <button onclick="location.reload()" style="
-                margin-top:20px; padding:10px 20px; border:none; background:#ccc; border-radius:20px; cursor:pointer;">
-                Start Again
+                margin-top:20px; padding:12px 30px; border:none; background:#b2bec3; color:white; border-radius:30px; cursor:pointer; font-weight:bold;">
+                Start Again (Mula Semula)
             </button>
         </div>
     `;

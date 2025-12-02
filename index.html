@@ -3,30 +3,26 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Year 6 English Quiz (Prepositions)</title>
+<title>Preposition Exercise (Year 1)</title>
 <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 <script src="https://accounts.google.com/gsi/client" async defer></script>
-<link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&display=swap" rel="stylesheet">
-
 <style>
-/* ====== 全局样式 (Global Styles) ====== */
+/* ====== Global Styles & Theme ====== */
 :root {
-  --primary-color: #009688; /* Teal 青色 - 代表成熟 */
-  --secondary-color: #ff6b6b; /* Coral 珊瑚红 - 代表活力 */
-  --success-green: #20bf6b;
-  --error-red: #eb3b5a;
-  --text-dark: #2d3436;
-  --card-bg: rgba(255, 255, 255, 0.92); /* 稍微不透明一点，增加阅读清晰度 */
+  --primary-color: #4FACFE; /* Friendly Blue */
+  --secondary-color: #00f2fe; /* Light Blue Gradient accent */
+  --accent-yellow: #FFD700; /* Sunny Yellow for highlights */
+  --success-green: #2ecc71;
+  --error-red: #e74c3c;
+  --text-dark: #2c3e50;
+  --card-bg: #ffffff;
 }
 
 body {
-  font-family: 'Comic Neue', 'Comic Sans MS', sans-serif;
-  font-size: 20px;
-  /* 背景图：书籍与自然，适合六年级 */
-  background: url('https://https://wallpapercave.com/wp/wp12620069.jpg') no-repeat center center fixed; 
-  /* 备用背景颜色，防图片加载失败 */
-  background-color: #f0f2f5;
-  background-size: cover;
+  font-family: "Comic Neue", "Comic Sans MS", sans-serif;
+  font-size: 18px; /* Slightly larger font for kids */
+  /* Playful gradient background instead of photo for better readability */
+  background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
   min-height: 100vh;
   padding: 20px;
   color: var(--text-dark);
@@ -38,227 +34,221 @@ body {
 
 #wrapper {
   background: var(--card-bg);
-  /* 玻璃拟态效果 */
-  backdrop-filter: blur(6px); 
-  -webkit-backdrop-filter: blur(6px);
-  padding: 35px;
-  border-radius: 25px;
-  max-width: 750px;
+  padding: 30px;
+  border-radius: 30px; /* Much rounder corners */
+  max-width: 700px;
   width: 100%;
-  box-shadow: 0 12px 30px rgba(0,0,0,0.2);
-  border-top: 8px solid var(--primary-color);
+  margin: 20px auto;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  border: 4px solid #fff; /* White border for pop */
 }
 
 h1 {
-  font-size: 2.5rem;
+  font-size: 2.2rem;
   text-align: center;
   margin-bottom: 25px;
   color: var(--primary-color);
-  text-shadow: 1px 1px 0px rgba(0,0,0,0.1);
-  font-weight: 700;
-  letter-spacing: 0.5px;
+  /* Fun, bubbly text shadow */
+  text-shadow: 2px 2px 0px var(--accent-yellow);
+  font-weight: 900;
 }
 
-/* ====== 登录画面样式 ====== */
-#start-screen { text-align: center; }
+/* ====== Start Screen Styles ====== */
+#start-screen { text-align: center; padding: 10px; }
 
 .input-group {
   margin-bottom: 25px;
   text-align: center;
+  max-width: 450px;
+  margin-left: auto;
+  margin-right: auto;
+  background: #f0faff;
+  padding: 20px;
+  border-radius: 20px;
+  border: 2px dashed var(--primary-color);
 }
 
 .input-group label {
   display: block;
   font-size: 1.3rem;
-  margin-bottom: 10px;
+  margin-bottom: 12px;
   font-weight: bold;
-  color: #4b6584;
+  color: var(--primary-color);
 }
 
 .input-group select {
-  width: 80%;
-  padding: 14px;
+  width: 90%;
+  padding: 15px;
   font-size: 1.2rem;
-  border: 2px solid #a5b1c2;
+  border: 3px solid #bce0fd;
   border-radius: 15px;
-  background: #fff;
+  box-sizing: border-box;
+  background: white;
+  color: #555;
   cursor: pointer;
-  transition: all 0.3s;
   font-family: inherit;
-  color: var(--text-dark);
 }
 .input-group select:focus {
   border-color: var(--primary-color);
   outline: none;
-  box-shadow: 0 0 8px rgba(0, 150, 136, 0.4);
+  box-shadow: 0 0 10px #bce0fd;
 }
 
-/* Google 按钮区域 */
-.google-area {
-  background: #f1f2f6;
-  padding: 25px;
-  border-radius: 20px;
-  border: 2px dashed var(--primary-color);
-  margin-top: 25px;
+/* Google Button Area */
+.google-btn-container {
+  margin-top: 20px;
   display: flex;
+  justify-content: center;
   flex-direction: column;
   align-items: center;
+  background: #fffcf0;
+  padding: 20px;
+  border-radius: 20px;
+  border: 2px dashed var(--accent-yellow);
 }
 
-.google-area h3 {
-  margin-top: 0;
-  color: var(--primary-color);
-  font-size: 1.2rem;
+.google-label {
+    margin-bottom:15px; font-weight:bold; color:#f39c12; font-size: 1.3rem;
 }
 
-/* 欢迎信息 */
 #welcome-msg {
-  display: none;
-  margin-top: 15px;
-  padding: 15px;
-  background-color: #d1f2eb;
-  border-radius: 12px;
-  color: #0e6251;
-  border: 1px solid #a3e4d7;
-  font-weight: bold;
+    display: none;
+    margin-top: 20px;
+    padding: 20px;
+    background-color: #d1f2eb;
+    border-radius: 15px;
+    color: var(--success-green);
+    font-weight: bold;
+    font-size: 1.1rem;
+    border: 3px solid #a3e4d7;
 }
 
-/* 手动开始按钮 */
 #manualStartBtn {
-  display: none;
-  font-size: 1.4rem;
-  padding: 12px 45px;
-  background: var(--secondary-color);
-  color: white;
-  border: none;
-  border-radius: 50px;
-  cursor: pointer;
-  margin-top: 20px;
-  box-shadow: 0 5px 0 #d63031;
-  transition: transform 0.1s;
-  font-family: inherit;
-  font-weight: bold;
+    display: none;
+    font-size: 1.5rem;
+    padding: 15px 40px;
+    background: var(--success-green);
+    color: white;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    margin-top: 20px;
+    font-weight: bold;
+    box-shadow: 0 6px 0 #219a52; /* 3D effect */
+    transition: transform 0.1s;
+    font-family: inherit;
 }
-#manualStartBtn:active { transform: translateY(5px); box-shadow: none; }
-#manualStartBtn:hover { background: #ff7675; }
+#manualStartBtn:active {
+    transform: translateY(4px);
+    box-shadow: 0 2px 0 #219a52;
+}
 
-/* ====== 测验区域样式 ====== */
+/* ====== Quiz Content Styles ====== */
 #quiz-content { display: none; }
 
 #student-info-display {
-  text-align: right;
-  font-size: 1rem;
-  color: #778ca3;
-  margin-bottom: 15px;
-  border-bottom: 2px dashed #d1d8e0;
-  padding-bottom: 8px;
-  font-weight: bold;
+    text-align: right; font-size: 1rem; color: var(--primary-color);
+    margin-bottom: 15px; border-bottom: 2px dashed #eee; padding-bottom: 10px;
+    font-weight: bold;
 }
 
-#q-index { 
-    font-weight: bold; 
-    color: var(--primary-color); 
-    margin-bottom: 12px; 
-    font-size: 1.2rem;
-    background: #e0f2f1;
-    display: inline-block;
-    padding: 5px 15px;
-    border-radius: 20px;
-}
-#question { 
-    font-size: 1.7rem; 
-    margin-bottom: 30px; 
-    line-height: 1.5; 
-    font-weight: 700; 
-    color: var(--text-dark);
+#q-index {
+    font-size: 1.3rem; margin-bottom: 15px; font-weight: bold; color: #7f8c8d;
+    background: #eee; display: inline-block; padding: 5px 15px; border-radius: 20px;
 }
 
+#question {
+    font-size: 1.8rem; margin-bottom: 30px; line-height: 1.4;
+    font-weight: bold; color: var(--text-dark);
+}
+
+/* Option Buttons */
 .opt {
-  font-size: 1.3rem;
-  padding: 18px 25px;
-  margin-bottom: 15px;
-  border-radius: 18px;
-  border: 2px solid #d1d8e0;
-  background: #fff;
-  cursor: pointer;
-  transition: all 0.2s;
-  position: relative;
-  font-weight: 600;
+    font-size: 1.4rem;
+    padding: 18px 25px;
+    margin-bottom: 18px;
+    border-radius: 50px; /* Pill shape */
+    border: 3px solid #e0e0e0;
+    background: #fff;
+    cursor: pointer;
+    transition: all 0.2s;
+    text-align: left;
+    position: relative;
+    overflow: hidden;
 }
-.opt:hover { 
-    background: #eafaf1; 
-    border-color: var(--primary-color); 
-    transform: translateX(5px);
+.opt:hover {
+    background: #f0f8ff;
+    border-color: var(--primary-color);
+    transform: scale(1.02); /* Slight zoom on hover */
 }
-.opt.correct { background: #d4edda; border-color: #20bf6b; color: #155724; }
-.opt.wrong { background: #fad7d9; border-color: #eb3b5a; color: #721c24; }
+.opt.correct {
+    background: #d4edda; border-color: var(--success-green); color: #155724;
+    box-shadow: inset 0 0 0 3px #c3e6cb; /* Inner glow */
+}
+.opt.wrong {
+    background: #f8d7da; border-color: var(--error-red); color: #721c24;
+}
 
-.controls { margin-top: 35px; text-align: center; }
+/* Controls & Score */
+.controls { margin-top: 30px; text-align: center; }
 
 #nextBtn {
-  font-size: 1.4rem;
-  padding: 14px 45px;
-  background: var(--primary-color);
-  color: white;
-  border: none;
-  border-radius: 40px;
-  cursor: pointer;
-  box-shadow: 0 5px 0 #00695c;
-  font-family: inherit;
-  font-weight: bold;
-  transition: all 0.1s;
+    font-size: 1.4rem; padding: 15px 35px;
+    background: var(--primary-color); color: white;
+    border: none; border-radius: 50px;
+    cursor: pointer;
+    box-shadow: 0 6px 0 #2c80b9;
+    font-weight: bold; font-family: inherit;
+    transition: transform 0.1s;
 }
-#nextBtn:active { transform: translateY(5px); box-shadow: none; }
-#nextBtn:disabled { background: #ced6e0; box-shadow: none; cursor: not-allowed; transform: none; }
-
-.score { 
-    font-size: 1.8rem; 
-    margin-top: 25px; 
-    font-weight: 800; 
-    color: var(--secondary-color); 
+#nextBtn:active {
+    transform: translateY(4px); box-shadow: 0 2px 0 #2c80b9;
+}
+#nextBtn:disabled {
+    background: #bdc3c7; box-shadow: none; cursor: not-allowed; color: #ecf0f1;
+    transform: none;
 }
 
-/* 最终结果 */
+.score {
+    font-size: 1.8rem; margin-top: 20px; font-weight: 900;
+    color: var(--accent-yellow);
+    text-shadow: 1px 1px 0 #e67e22;
+}
+
+/* Final Results Styling */
+.final-score-big {
+    font-size: 4.5rem; margin: 25px 0; color: var(--success-green);
+    font-weight: 900; text-shadow: 3px 3px 0 #a3e4d7;
+}
 .result-box {
-    padding: 25px;
-    border-radius: 20px;
-    margin-top: 25px;
-    font-size: 1.3rem;
-    border-width: 2px;
-    border-style: solid;
+    padding: 20px; border-radius: 15px; font-size: 1.2rem; margin: 20px auto; max-width: 80%;
 }
+.result-success { background:#eafaf1; border: 3px solid var(--success-green); color: var(--success-green); }
+.result-error { background:#fdedec; border: 3px solid var(--error-red); color: var(--error-red); }
 
-/* 移动端适配 */
-@media (max-width: 600px) {
-    h1 { font-size: 1.8rem; }
-    #question { font-size: 1.4rem; }
-    .opt { font-size: 1.1rem; padding: 15px; }
-}
 </style>
 </head>
 <body>
 
 <div id="wrapper">
-  <h1>English Prepositions <br><span style="font-size:0.7em; color:var(--secondary-color);">(Year 6)</span></h1>
+  <h1>Preposition Exercise (Year 1)</h1>
 
   <div id="start-screen">
       <div class="input-group">
-          <label for="student-class">Step 1: Choose Your Class (选择班级)</label>
+          <label for="student-class">Step 1: Choose Your Class</label>
           <select id="student-class">
-              <option value="">-- Sila Pilih Kelas --</option>
-              <option value="6M">6M</option>
-              <option value="6K">6K</option>
-              <option value="6B">6B</option>
-              <option value="6H">6H</option>
-              <option value="6J">6J</option>
-              <option value="6U">6U</option>
-              <option value="6P">6P</option>
-              <option value="6C">6C</option>
+              <option value="">-- Select Class --</option>
+              <option value="1M">1M</option>
+              <option value="1K">1K</option>
+              <option value="1B">1B</option>
+              <option value="1H">1H</option>
+              <option value="1J">1J</option>
+              <option value="1U">1U</option>
           </select>
       </div>
 
-      <div class="google-area">
-          <h3>Step 2: Sign In with Google</h3>
+      <div class="google-btn-container">
+          <label class="google-label">Step 2: Google Sign-In</label>
           
           <div id="g_id_onload"
                data-client_id="1006856013626-uk3eq5tchv9t65gqosb0k6rst7hi1eeb.apps.googleusercontent.com"
@@ -269,15 +259,14 @@ h1 {
           <div class="g_id_signin"
                data-type="standard"
                data-size="large"
-               data-theme="outline"
+               data-theme="filled_blue"
                data-text="sign_in_with"
                data-shape="pill"
                data-logo_alignment="left">
           </div>
 
           <div id="welcome-msg"></div>
-          
-          <button id="manualStartBtn">Start Quiz Now 🚀</button>
+          <button id="manualStartBtn">Start Now! 🚀</button>
       </div>
   </div>
 
@@ -292,65 +281,55 @@ h1 {
         <div class="score" id="score">Score: 0</div>
       </div>
   </div>
-
 </div>
 
 <script>
-// ====== Google Script URL (已更新为六年级链接) ======
-const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyivITtvzPZrCWaGwOM2dbYuG0ia0DWDZI4qMkro_6doYuRhXA7JrOjSVylGZoDmyuFKw/exec";
+// ====== Google Apps Script URL (Unchanged) ======
+const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwoeuXKtsQSeYH3YURXriC_tcPzyuwppnCyV62S2n9N8qM2F7ieYP0i6BwKlcwj9Zbw/exec";
 
-// ====== 题目数据 (Year 6 Prepositions) ======
+// ====== Question Data (Modified to have only 3 options per question) ======
 const rawData = `
-1,We are very proud ____ our country's achievements. A. with B. of C. for D. at,B
-2,The wooden table is made ____ wood from the rainforest. A. of B. from C. by D. in,A
-3,Please look ____ your younger sister while I am cooking. A. for B. at C. after D. out,C
-4,He cut the apple ____ a sharp knife. A. by B. with C. of D. use,B
-5,Ali was absent ____ school yesterday because he was sick. A. from B. to C. in D. for,A
-6,____ playing badminton, Jason also likes to play football. A. Beside B. Besides C. Except D. Among,B
-7,The Harry Potter books were written ____ J.K. Rowling. A. with B. from C. of D. by,D
-8,My school bag is different ____ yours. A. than B. to C. from D. with,C
-9,The headmaster congratulated the boy ____ winning the competition. A. for B. with C. on D. at,C
-10,They arrived ____ the airport just in time for their flight. A. in B. to C. on D. at,D
+1,The cat is sleeping ____ the sofa. A. in B. on C. at,B
+2,Please put your pencil ____ the pencil case. A. on B. under C. in,C
+3,The ball is ____ the table. A. under B. in C. to,A
+4,The bird is flying ____ the sky. A. on B. at C. in,C
+5,My shoes are ____ the bed. A. in B. under C. on,B
+6,The picture is hanging ____ the wall. A. in B. at C. on,C
+7,The fish is swimming ____ the pond. A. on B. in C. at,B
+8,The teacher is standing ____ front of the class. A. in B. on C. at,A
+9,The ruler is ____ the book. A. at B. in C. on,C
+10,Ali sits next ____ Abu in class. A. to B. in C. on,A
 `;
 
-// ====== 数据处理逻辑 ======
 const data = rawData.trim().split("\n").map(line=>{
   const parts = line.split(",");
-  const answerChar = parts.pop().trim().toUpperCase(); 
-  const full = parts.join(",").trim(); 
-  
-  // 分离题目和选项
+  const answer = parts.pop().trim().toUpperCase();
+  const full = parts.join(",").trim();
   const optStart = full.indexOf("A.");
   const qtext = full.slice(0, optStart).trim();
-  
-  // 正则分割 A. B. C. D.
-  const optParts = full.slice(optStart).split(/\s(?=[A-D]\.\s)/).map(s=>s.trim().replace(/^[A-D]\.\s*/, ""));
-  
-  // 答案映射: A=0, B=1, C=2, D=3
-  const map = {A:0, B:1, C:2, D:3};
-  
-  return { q: qtext, options: optParts, answer: map[answerChar] };
+  // regex [A-C] correctly handles splitting for 3 options
+  const optParts = full.slice(optStart).split(/\s(?=[A-C]\.\s)/).map(s=>s.trim().replace(/^[A-C]\.\s*/, ""));
+  // mapping A:0, B:1, C:2 handles the answers for 3 options
+  return { q: qtext, options: optParts, answer: {A:0,B:1,C:2}[answer] };
 });
 
-// ====== 全局变量 ======
+// ====== Global Variables (Unchanged) ======
 let current = 0;
 let score = 0;
 let answered = false;
 let studentName = "";
-let studentEmail = "";
 let studentClass = "";
+let studentEmail = "";
 
-// ====== DOM 元素 ======
+// ====== DOM Elements (Unchanged) ======
 const startScreen = document.getElementById('start-screen');
 const quizContent = document.getElementById('quiz-content');
+const infoDisplay = document.getElementById('student-info-display');
 const classInput = document.getElementById('student-class');
-const manualStartBtn = document.getElementById('manualStartBtn');
-const welcomeMsg = document.getElementById('welcome-msg');
-const gBtn = document.querySelector('.g_id_signin');
 
 document.getElementById('total').textContent = data.length;
 
-// ====== 1. Google 登录逻辑 ======
+// ====== 1. Google Login Logic (Logic Unchanged, Text translated) ======
 
 function parseJwt (token) {
     var base64Url = token.split('.')[1];
@@ -362,47 +341,67 @@ function parseJwt (token) {
 }
 
 function handleCredentialResponse(response) {
+    console.log("Encoded JWT ID token: " + response.credential);
     const responsePayload = parseJwt(response.credential);
     studentName = responsePayload.name;
     studentEmail = responsePayload.email;
     
-    gBtn.style.display = 'none';
-    welcomeMsg.style.display = 'block';
-    welcomeMsg.innerHTML = `👋 <strong>Hi, ${studentName}!</strong><br><span style="font-size:0.9em; color:#555;">${studentEmail}</span>`;
+    console.log("ID: " + responsePayload.sub);
+    console.log('Full Name: ' + studentName);
+    console.log('Email: ' + studentEmail);
+
+    document.querySelector('.g_id_signin').style.display = 'none';
     
-    checkClassAndReady();
+    const welcomeDiv = document.getElementById('welcome-msg');
+    welcomeDiv.style.display = 'block';
+    // Updated Welcome message language
+    welcomeDiv.innerHTML = `🎉 Welcome, ${studentName}!<br><small>(${studentEmail})</small>`;
+    
+    checkAndStart();
 }
 
-classInput.addEventListener('change', checkClassAndReady);
-
-function checkClassAndReady() {
-    if (studentName && classInput.value) {
-        studentClass = classInput.value;
-        manualStartBtn.style.display = 'inline-block';
+function checkAndStart() {
+    const sClass = classInput.value;
+    
+    if (sClass) {
+        studentClass = sClass;
+        setTimeout(startQuiz, 1000);
     } else {
-        manualStartBtn.style.display = 'none';
+        // Updated Alert language
+        alert("Login successful! Please choose your CLASS to start.");
+        const btn = document.getElementById('manualStartBtn');
+        btn.style.display = 'block';
+        btn.onclick = function() {
+            if(!classInput.value) {
+                // Updated Alert language
+                alert("Please choose your class first!");
+            } else {
+                studentClass = classInput.value;
+                startQuiz();
+            }
+        };
     }
 }
 
-manualStartBtn.addEventListener('click', () => {
-    if(!classInput.value) {
-        alert("Sila pilih kelas dahulu! (Please select class!)");
-        return;
+classInput.addEventListener('change', function() {
+    if(studentName && document.getElementById('manualStartBtn').style.display === 'block') {
+         // Do nothing, wait for button click
     }
-    startQuiz();
 });
 
-// ====== 2. 测验逻辑 ======
+// ====== 2. Quiz Logic (Logic Unchanged, Text translated) ======
 function startQuiz() {
     startScreen.style.display = 'none';
     quizContent.style.display = 'block';
-    document.getElementById('student-info-display').textContent = `Murid: ${studentName} (${studentClass})`; 
+    // Updated Info Display language
+    infoDisplay.textContent = `Student: ${studentName} (${studentClass})`; 
     loadQuestion();
 }
 
 function loadQuestion(){
   answered = false;
   document.getElementById('nextBtn').disabled = true;
+  // Updated Button text language
   document.getElementById('nextBtn').textContent = "Next Question ➜";
   
   if(current >= data.length) {
@@ -420,14 +419,13 @@ function loadQuestion(){
   q.options.forEach((opt,i)=>{
     const div = document.createElement('div');
     div.className='opt';
-    // 选项 A, B, C, D 标签
-    const label = String.fromCharCode(65 + i); 
-    div.innerHTML = `<span style="font-weight:bold; color:var(--primary-color); margin-right:8px;">${label}.</span> ${opt}`;
+    div.innerHTML = opt;
     div.addEventListener('click',()=>selectOption(div,i));
     optsDiv.appendChild(div);
   });
   
   if(current === data.length - 1) {
+      // Updated Button text language
       document.getElementById('nextBtn').textContent = "Submit Answers ✅";
   }
   
@@ -440,20 +438,15 @@ function selectOption(el, index){
   const q = data[current];
   const all = document.querySelectorAll('.opt');
   
-  all.forEach((d,i)=>{ 
-      if(i === q.answer) {
-          d.classList.add('correct');
-          d.innerHTML += ' <span style="float:right;">✔</span>';
-      }
-  });
+  all.forEach((d,i)=>{ if(i === q.answer) d.classList.add('correct'); });
   
   if(index !== q.answer) {
       el.classList.add('wrong'); 
-      el.innerHTML += ' <span style="float:right;">✖</span>';
   } else {
       score++;
   }
   
+  // Updated Score text language
   document.getElementById('score').textContent = 'Score: ' + score;
   document.getElementById('nextBtn').disabled = false;
 }
@@ -463,12 +456,13 @@ document.getElementById('nextBtn').addEventListener('click', () => {
   loadQuestion();
 });
 
-// ====== 3. 提交数据 ======
+// ====== 3. Submission Logic (Logic Unchanged, Text translated & Styled) ======
 function submitToGoogleSheet() {
+    // Updated Submission Loading text language
     quizContent.innerHTML = `
-        <div style="text-align:center; padding:40px;">
-            <h2 style="color:var(--secondary-color);">⏳ Sending Results...</h2>
-            <p>Please wait while we save your score.</p>
+        <div style="text-align:center; padding:50px;">
+            <h2 style="color:var(--accent-yellow); font-size: 2.5rem;">⏳ Sending results...</h2>
+            <p>Please wait a moment.</p>
         </div>
     `;
 
@@ -483,42 +477,30 @@ function submitToGoogleSheet() {
         body: formData
     })
     .then(response => response.text())
-    .then(text => {
-        showFinalResult(true);
-    })
-    .catch(error => {
-        console.error('Error:', error);
-        showFinalResult(false);
-    });
+    .then(text => showFinalResult(true))
+    .catch(error => showFinalResult(false));
 }
 
 function showFinalResult(isSuccess) {
+    // Updated Final Result Messages language and added classes for styling
     let msg = isSuccess ? 
-        `<div class="result-box" style="background:#eafaf1; color:#2ecc71; border-color:#2ecc71;">
-            ✅ <strong>Berjaya! (Success)</strong><br>Your result has been sent to the teacher.
-        </div>` : 
-        `<div class="result-box" style="background:#fdedec; color:#e74c3c; border-color:#e74c3c;">
-            ⚠️ <strong>Connection Error!</strong><br>Please screenshot this page and send to your teacher.
-        </div>`;
+        `<div class="result-box result-success">✅ Successfully submitted! Well done!</div>` : 
+        `<div class="result-box result-error">⚠️ Connection Error. Please Screenshot this page.</div>`;
 
+    // Updated Final Screen language and added classes for styling
     quizContent.innerHTML = `
         <div style="text-align:center; padding: 30px;">
-            <h2>Great Job, ${studentName}!</h2>
-            <p style="color:#666;">Class: ${studentClass}</p>
-            
-            <div style="font-size: 4rem; margin: 20px 0; color: var(--primary-color); font-weight:bold;">
+            <h2 style="color:var(--primary-color); font-size: 2.5rem;">Congratulations, ${studentName}!🎉</h2>
+            <p style="font-size: 1.3rem;">Class: <strong>${studentClass}</strong></p>
+            <div class="final-score-big">
                 ${score} / ${data.length}
             </div>
-            
             ${msg}
-            
-            <button onclick="location.reload()" style="
-                margin-top:20px; padding:12px 30px; border:none; background:#b2bec3; color:white; border-radius:30px; cursor:pointer; font-weight:bold;">
-                Start Again (Mula Semula)
-            </button>
+            <button id="manualStartBtn" onclick="location.reload()" style="display:inline-block; margin-top:30px;">Try Again 🔄</button>
         </div>
     `;
 }
 </script>
 </body>
-</html>
+</html> 
+

@@ -3,266 +3,238 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>English Prepositions Quiz (Year 4)</title>
+<title>Preposition Practice (Year 3)</title>
 <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<script src="https://accounts.google.com/gsi/client" async defer></script>
 <style>
 /* ====== 全局样式 (Global Styles) ====== */
-@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap');
+:root {
+  --primary-color: #6a0572; /* 深紫色 */
+  --secondary-color: #ab2346; /* 莓红色 */
+  --accent-light: #f7cac9; /* 浅粉高光 */
+  --accent-gold: #ffdf00; /* 金色 */
+  --success-green: #2ecc71;
+  --error-red: #e74c3c;
+  --text-dark: #333333;
+  --card-bg: rgba(255, 255, 255, 0.95);
+}
 
 body {
-  font-family: "Nunito", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-family: 'Poppins', 'Segoe UI', sans-serif;
   font-size: 18px;
-  /* 更换为更有质感的背景图 */
-  background: url('https://images.unsplash.com/photo-1503676260728-1c00da094a0b?q=80&w=1920&auto=format&fit=crop') no-repeat center center fixed;
+  /* 背景图：可爱的小熊猫 */
+  background: linear-gradient(rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.6)), url('https://images.hdqwalls.com/wallpapers/red-panda-cute-25.jpg') no-repeat center center fixed;
   background-size: cover;
-  padding: 20px;
-  color: #2d3436;
-  margin: 0;
   min-height: 100vh;
+  padding: 20px;
+  color: var(--text-dark);
+  margin: 0;
   display: flex;
-  align-items: center; /* 垂直居中 */
+  align-items: center;
   justify-content: center;
 }
 
 #wrapper {
-  /* 玻璃拟态效果 (Glassmorphism) */
-  background: rgba(255, 255, 255, 0.85); /* 85% 不透明度 */
-  backdrop-filter: blur(10px); /* 背景模糊 */
-  -webkit-backdrop-filter: blur(10px);
+  background: var(--card-bg);
   padding: 40px;
   border-radius: 24px;
+  max-width: 700px;
   width: 100%;
-  max-width: 750px;
   box-shadow: 0 15px 35px rgba(0,0,0,0.2);
-  border: 1px solid rgba(255, 255, 255, 0.6);
+  border-top: 8px solid var(--primary-color);
 }
 
-h1 { 
-  font-size: 2.2rem; 
-  text-align: center; 
-  margin-bottom: 30px; 
-  color: #2c3e50; 
-  font-weight: 800;
-  letter-spacing: -0.5px;
-}
-
-/* ====== 开始画面样式 (Start Screen) ====== */
-#start-screen {
+h1 {
+  font-size: 2.2rem;
   text-align: center;
-  padding: 10px;
+  margin-bottom: 25px;
+  color: var(--primary-color);
+  text-shadow: 2px 2px 0px var(--accent-light);
+  font-weight: 800;
 }
+
+/* ====== 登录画面样式 ====== */
+#start-screen { text-align: center; }
 
 .input-group {
   margin-bottom: 25px;
-  text-align: left;
-  max-width: 450px;
-  margin-left: auto;
-  margin-right: auto;
+  text-align: center;
 }
 
 .input-group label {
   display: block;
-  font-size: 1.1rem;
-  margin-bottom: 8px;
-  font-weight: 700;
-  color: #444;
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+  font-weight: bold;
+  color: #555;
 }
 
-.input-group input, 
 .input-group select {
-  width: 100%;
-  padding: 15px;
+  width: 80%;
+  padding: 12px;
   font-size: 1.1rem;
-  border: 2px solid #ddd;
+  border: 2px solid #ccc;
   border-radius: 12px;
-  background: rgba(255,255,255,0.9);
-  box-sizing: border-box;
-  font-family: inherit;
-  transition: all 0.3s ease;
+  background: #fff;
+  cursor: pointer;
+  transition: border 0.3s;
 }
-
-.input-group input:focus, 
 .input-group select:focus {
-  border-color: #6c5ce7;
-  box-shadow: 0 0 0 4px rgba(108, 92, 231, 0.1);
+  border-color: var(--primary-color);
   outline: none;
 }
 
-#startBtn {
+/* Google 按钮区域 */
+.google-area {
+  background: #fdf2f7; /* 浅粉色背景块 */
+  padding: 25px;
+  border-radius: 16px;
+  border: 2px dashed var(--secondary-color);
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.google-area h3 {
+  margin-top: 0;
+  color: var(--secondary-color);
+  font-size: 1.1rem;
+}
+
+/* 欢迎信息 */
+#welcome-msg {
+  display: none;
+  margin-top: 15px;
+  padding: 15px;
+  background-color: #e6ffe6;
+  border-radius: 10px;
+  color: #006400;
+  border: 2px solid #90ee90;
+}
+
+/* 手动开始按钮 (登录后出现) */
+#manualStartBtn {
+  display: none;
   font-size: 1.3rem;
-  padding: 15px 50px;
-  background: linear-gradient(135deg, #6c5ce7, #a29bfe);
+  padding: 12px 30px;
+  background: var(--primary-color);
   color: white;
   border: none;
   border-radius: 50px;
   cursor: pointer;
   margin-top: 15px;
-  font-weight: 700;
-  box-shadow: 0 4px 15px rgba(108, 92, 231, 0.4);
-  transition: transform 0.2s, box-shadow 0.2s;
+  box-shadow: 0 4px 0 #4a044d;
+  transition: transform 0.1s;
 }
+#manualStartBtn:active { transform: translateY(4px); box-shadow: none; }
 
-#startBtn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(108, 92, 231, 0.5);
-}
-
-#startBtn:active {
-  transform: translateY(1px);
-}
-
-/* ====== 测验内容样式 (Quiz Content) ====== */
-#quiz-content {
-  display: none; /* 初始隐藏 */
-}
+/* ====== 测验区域样式 ====== */
+#quiz-content { display: none; }
 
 #student-info-display {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  text-align: right;
   font-size: 0.95rem;
-  color: #636e72;
-  margin-bottom: 20px;
-  padding-bottom: 10px;
-  border-bottom: 2px dashed #dfe6e9;
-  font-weight: 600;
-}
-
-#q-index { 
-  font-size: 1.1rem; 
-  margin-bottom: 15px; 
-  font-weight: 800; 
-  color: #6c5ce7; 
-  text-transform: uppercase;
-  letter-spacing: 1px;
-}
-
-#question { 
-  font-size: 1.6rem; 
-  margin-bottom: 30px; 
-  line-height: 1.5; 
-  color: #2d3436;
-  font-weight: 600;
-}
-
-.opt {
-  font-size: 1.2rem;
-  padding: 16px 20px;
+  color: var(--primary-color);
   margin-bottom: 15px;
-  border-radius: 16px;
-  border: 2px solid #e0e0e0;
-  background: rgba(255, 255, 255, 0.8);
-  cursor: pointer;
-  transition: all 0.2s cubic-bezier(0.25, 0.8, 0.25, 1);
-  position: relative;
-  overflow: hidden;
-}
-
-.opt:hover { 
-  background: #f8f9fa; 
-  border-color: #6c5ce7; 
-  transform: translateX(5px);
-}
-
-.opt.correct { 
-  background: #d4edda; 
-  border-color:#27ae60; 
-  color: #0d5e28; 
+  border-bottom: 1px dashed #ccc;
+  padding-bottom: 5px;
   font-weight: bold;
 }
 
-.opt.wrong { 
-  background: #fad7d9; 
-  border-color:#e74c3c; 
-  color: #881c1c; 
-  opacity: 0.8;
+#q-index { font-weight: bold; color: #777; margin-bottom: 10px; }
+#question { font-size: 1.6rem; margin-bottom: 25px; line-height: 1.4; font-weight: 600; }
+
+.opt {
+  font-size: 1.2rem;
+  padding: 15px 20px;
+  margin-bottom: 15px;
+  border-radius: 12px;
+  border: 2px solid #e0e0e0;
+  background: #fff;
+  cursor: pointer;
+  transition: all 0.2s;
+  position: relative;
 }
+.opt:hover { background: #fef0f5; border-color: var(--secondary-color); }
+.opt.correct { background: #d4edda; border-color: #28a745; color: #155724; }
+.opt.wrong { background: #f8d7da; border-color: #dc3545; color: #721c24; }
 
 .controls { margin-top: 30px; text-align: center; }
 
 #nextBtn {
   font-size: 1.2rem;
-  padding: 14px 35px;
-  background: #0984e3;
+  padding: 12px 35px;
+  background: var(--secondary-color);
   color: white;
   border: none;
-  border-radius: 12px;
+  border-radius: 30px;
   cursor: pointer;
-  font-weight: 600;
-  box-shadow: 0 4px 10px rgba(9, 132, 227, 0.3);
-  transition: all 0.2s;
+  box-shadow: 0 4px 0 #8a1c38;
 }
+#nextBtn:disabled { background: #ccc; box-shadow: none; cursor: not-allowed; }
 
-#nextBtn:disabled { 
-  background: #b2bec3; 
-  box-shadow: none; 
-  cursor: not-allowed; 
-  transform: none;
+.score { font-size: 1.5rem; margin-top: 20px; font-weight: bold; color: var(--accent-gold); text-shadow: 1px 1px 0 #aaa; }
+
+/* 最终结果 */
+.result-box {
+    padding: 20px;
+    border-radius: 15px;
+    margin-top: 20px;
+    font-size: 1.2rem;
 }
-#nextBtn:not(:disabled):hover {
-  background: #74b9ff;
-  transform: translateY(-2px);
-}
-
-.score { 
-  font-size: 1.4rem; 
-  margin-top: 20px; 
-  font-weight: 800; 
-  color: #e17055; 
-}
-
-/* 加载与结果样式 */
-.loading-box { text-align: center; padding: 40px; }
-.loading-text { font-size: 1.2rem; color: #666; margin-top: 15px; }
-
-/* 响应式调整 */
-@media (max-width: 600px) {
-  h1 { font-size: 1.8rem; }
-  #wrapper { padding: 25px; margin: 10px; width: 90%; }
-  #question { font-size: 1.3rem; }
-  .opt { font-size: 1.1rem; padding: 12px; }
-}
-
 </style>
 </head>
 <body>
 
 <div id="wrapper">
-  <h1>English Prepositions Quiz <br><span style="font-size:0.6em; color:#636e72;">Year 4</span></h1>
+  <h1>Preposition Practice (Year 3)</h1>
 
   <div id="start-screen">
       <div class="input-group">
-          <label for="student-name">Nama Penuh (姓名)：</label>
-          <input type="text" id="student-name" placeholder="Contoh: Ali bin Abu" autocomplete="off">
-      </div>
-      <div class="input-group">
-          <label for="student-class">Kelas (班级)：</label>
+          <label for="student-class">Step 1: Choose Your Class (选择班级)</label>
           <select id="student-class">
-              <option value="">Sila pilih kelas</option>
-              <option value="4M">4M</option>
-              <option value="4K">4K</option>
-              <option value="4B">4B</option>
-              <option value="4H">4H</option>
-              <option value="4J">4J</option>
-              <option value="4U">4U</option>
-              <option value="4P">4P</option>
-              <option value="4C">4C</option>
+              <option value="">-- Select Class --</option>
+              <option value="3M">3M</option>
+              <option value="3K">3K</option>
+              <option value="3B">3B</option>
+              <option value="3H">3H</option>
+              <option value="3J">3J</option>
           </select>
       </div>
-      <button id="startBtn">Mula Kuiz</button>
+
+      <div class="google-area">
+          <h3>Step 2: Sign In with Google</h3>
+          
+          <div id="g_id_onload"
+               data-client_id="1006856013626-uk3eq5tchv9t65gqosb0k6rst7hi1eeb.apps.googleusercontent.com"
+               data-callback="handleCredentialResponse"
+               data-auto_prompt="false">
+          </div>
+          
+          <div class="g_id_signin"
+               data-type="standard"
+               data-size="large"
+               data-theme="outline"
+               data-text="sign_in_with"
+               data-shape="pill"
+               data-logo_alignment="left">
+          </div>
+
+          <div id="welcome-msg"></div>
+          
+          <button id="manualStartBtn">Start Quiz Now 🚀</button>
+      </div>
   </div>
 
   <div id="quiz-content">
-      <div id="student-info-display">
-        <span id="disp-name"></span>
-        <span id="disp-class" style="background:#dfe6e9; padding:4px 8px; border-radius:6px; font-size:0.8rem;"></span>
-      </div>
-      <div id="q-index">Question <span id="cur">1</span> of <span id="total">0</span></div>
+      <div id="student-info-display"></div>
+      <div id="q-index">Question <span id="cur">1</span> / <span id="total">0</span></div>
       <div id="question"></div>
       <div id="options"></div>
       
       <div class="controls">
-        <button id="nextBtn" disabled>Next Question</button>
+        <button id="nextBtn" disabled>Next Question ➜</button>
         <div class="score" id="score">Score: 0</div>
       </div>
   </div>
@@ -270,48 +242,31 @@ h1 {
 </div>
 
 <script>
-// ====== Google Apps Script 链接 (保持不变) ======
+// ====== Google Script URL (用于提交分数) ======
 const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbw7wxRG1ma7VOP5cW6n7Rj3kaAu4Ub592p5icpn4Uqi11vyHfqqz7JCICuC1NQgm8uaLg/exec";
 
-// ====== 新的题目数据 (Year 4 Prepositions) ======
-// 注意：数据格式必须严格保持 ID,Question... A. opt1 B. opt2 C. opt3 D. opt4,Answer
+// ====== 题目数据 (Year 3 Prepositions) ======
 const rawData = `
-1,The teacher shared the sweets ____ all the students in the class. A. between B. among C. through D. against,B
-2,The train went ____ the dark tunnel. A. across B. over C. through D. on,C
-3,Please do not talk ____ the examination. A. during B. at C. on D. by,A
-4,He leaned his bicycle ____ the wall before entering the shop. A. on B. against C. over D. to,B
-5,My father goes to work ____ car every morning. A. in B. on C. with D. by,D
-6,The earth moves ____ the sun. A. around B. across C. through D. between,A
-7,The dog ran ____ the gate when it saw a stranger. A. towards B. on C. at D. in,A
-8,There is a bridge ____ the river. A. under B. through C. over D. in,C
-9,We usually have our assembly ____ Monday mornings. A. in B. at C. on D. during,C
-10,The secret is just ____ you and me. A. among B. between C. to D. with,B
+1,I wake up ____ 6:00 a.m. every morning. A. on B. in C. at,C
+2,Pour the orange juice ____ the glass, please. A. on B. into C. at,B
+3,My birthday is ____ August. A. on B. at C. in,C
+4,We play football ____ the evening. A. in B. on C. at,A
+5,The boy walked ____ the road carefully. A. into B. across C. in,B
+6,The bank is ____ the police station. A. opposite B. in C. on,A
+7,He goes to the library ____ Saturdays. A. in B. at C. on,C
+8,The cat jumped ____ the fence. A. in B. over C. at,B
+9,We walked ____ the beach and collected seashells. A. along B. into C. at,A
+10,Please take your books ____ your bag. A. out of B. into C. up,A
 `;
 
-// ====== 数据处理逻辑 (更新以支持 4 个选项) ======
 const data = rawData.trim().split("\n").map(line=>{
   const parts = line.split(",");
-  const answerChar = parts.pop().trim().toUpperCase(); // 获取答案字母
-  const qid = parts.shift(); // 获取题号
-  const full = parts.join(",").trim(); // 获取题目和选项全文本
-  
-  // 查找第一个 "A." 的位置
+  const answer = parts.pop().trim().toUpperCase();
+  const full = parts.join(",").trim();
   const optStart = full.indexOf("A.");
   const qtext = full.slice(0, optStart).trim();
-  const optRaw = full.slice(optStart);
-  
-  // 使用正则分割 A. B. C. D. 
-  // 更新：正则改为匹配 [A-D]
-  const optParts = optRaw.split(/\s(?=[A-D]\.\s)/).map(s=>s.trim());
-  const opts = optParts.map(op => op.replace(/^[A-D]\.\s*/, ""));
-  
-  // 补全选项以防万一
-  while (opts.length < 4) opts.push("(Missing Option)");
-  
-  // 答案映射：增加 D:3
-  const map = {A:0, B:1, C:2, D:3};
-  
-  return { q: qtext, options: opts, answer: map[answerChar] };
+  const optParts = full.slice(optStart).split(/\s(?=[A-C]\.\s)/).map(s=>s.trim().replace(/^[A-C]\.\s*/, ""));
+  return { q: qtext, options: optParts, answer: {A:0,B:1,C:2}[answer] };
 });
 
 // ====== 全局变量 ======
@@ -319,50 +274,82 @@ let current = 0;
 let score = 0;
 let answered = false;
 let studentName = "";
+let studentEmail = "";
 let studentClass = "";
 
 // ====== DOM 元素 ======
 const startScreen = document.getElementById('start-screen');
 const quizContent = document.getElementById('quiz-content');
-const startBtn = document.getElementById('startBtn');
-const nameInput = document.getElementById('student-name');
 const classInput = document.getElementById('student-class');
+const manualStartBtn = document.getElementById('manualStartBtn');
+const welcomeMsg = document.getElementById('welcome-msg');
+const gBtn = document.querySelector('.g_id_signin');
 
 document.getElementById('total').textContent = data.length;
 
-// ====== 1. 开始画面逻辑 ======
-startBtn.addEventListener('click', () => {
-    const sName = nameInput.value.trim();
-    const sClass = classInput.value;
+// ====== 1. Google 登录逻辑 ======
 
-    if (!sName) {
-        alert("Sila masukkan nama anda (Please enter your name).");
+// 解码 JWT Token 获取用户信息
+function parseJwt (token) {
+    var base64Url = token.split('.')[1];
+    var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+    var jsonPayload = decodeURIComponent(window.atob(base64).split('').map(function(c) {
+        return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+    }).join(''));
+    return JSON.parse(jsonPayload);
+}
+
+// Google 登录回调函数
+function handleCredentialResponse(response) {
+    // 1. 获取用户信息
+    const responsePayload = parseJwt(response.credential);
+    studentName = responsePayload.name;
+    studentEmail = responsePayload.email;
+    
+    // 2. 隐藏 Google 按钮，显示欢迎信息
+    gBtn.style.display = 'none';
+    welcomeMsg.style.display = 'block';
+    welcomeMsg.innerHTML = `<strong>Hi, ${studentName}!</strong><br><span style="font-size:0.9em; color:#666;">${studentEmail}</span>`;
+    
+    // 3. 检查是否选择了班级，如果选了，显示开始按钮
+    checkClassAndReady();
+}
+
+// 监听班级选择变化
+classInput.addEventListener('change', checkClassAndReady);
+
+function checkClassAndReady() {
+    // 只有当“已登录”且“已选班级”时，才显示开始按钮
+    if (studentName && classInput.value) {
+        studentClass = classInput.value;
+        manualStartBtn.style.display = 'inline-block';
+    } else {
+        manualStartBtn.style.display = 'none';
+    }
+}
+
+// 点击开始按钮
+manualStartBtn.addEventListener('click', () => {
+    if(!classInput.value) {
+        alert("Please select your class first!");
         return;
     }
-    if (!sClass) {
-        alert("Sila pilih kelas anda (Please select your class).");
-        return;
-    }
-
-    studentName = sName;
-    studentClass = sClass;
-
-    startScreen.style.display = 'none';
-    quizContent.style.display = 'block';
-
-    // 顶部信息栏
-    document.getElementById('disp-name').textContent = studentName;
-    document.getElementById('disp-class').textContent = studentClass;
-
-    loadQuestion();
+    startQuiz();
 });
 
 // ====== 2. 测验逻辑 ======
+function startQuiz() {
+    startScreen.style.display = 'none';
+    quizContent.style.display = 'block';
+    document.getElementById('student-info-display').textContent = `Student: ${studentName} (${studentClass})`; 
+    loadQuestion();
+}
+
 function loadQuestion(){
   answered = false;
   document.getElementById('nextBtn').disabled = true;
-  document.getElementById('nextBtn').textContent = "Next Question"; 
-
+  document.getElementById('nextBtn').textContent = "Next Question ➜";
+  
   if(current >= data.length) {
       submitToGoogleSheet();
       return;
@@ -378,13 +365,13 @@ function loadQuestion(){
   q.options.forEach((opt,i)=>{
     const div = document.createElement('div');
     div.className='opt';
-    div.innerHTML = `<span style="font-weight:bold; margin-right:10px; color:#6c5ce7;">${String.fromCharCode(65+i)}.</span> ${opt}`;
+    div.innerHTML = opt;
     div.addEventListener('click',()=>selectOption(div,i));
     optsDiv.appendChild(div);
   });
   
   if(current === data.length - 1) {
-      document.getElementById('nextBtn').textContent = "Submit Answers";
+      document.getElementById('nextBtn').textContent = "Submit Answers ✅";
   }
   
   if(window.MathJax) MathJax.typesetPromise();
@@ -396,19 +383,10 @@ function selectOption(el, index){
   const q = data[current];
   const all = document.querySelectorAll('.opt');
   
-  // 标记正确答案
-  all.forEach((d,i)=>{ 
-      if(i === q.answer) {
-          d.classList.add('correct');
-          // 添加对勾图标
-          d.innerHTML += ' <span style="float:right">✓</span>';
-      }
-  });
+  all.forEach((d,i)=>{ if(i === q.answer) d.classList.add('correct'); });
   
-  // 标记用户选择
   if(index !== q.answer) {
       el.classList.add('wrong'); 
-      el.innerHTML += ' <span style="float:right">✕</span>';
   } else {
       score++;
   }
@@ -422,12 +400,12 @@ document.getElementById('nextBtn').addEventListener('click', () => {
   loadQuestion();
 });
 
-// ====== 3. 提交逻辑 ======
+// ====== 3. 提交数据 ======
 function submitToGoogleSheet() {
     quizContent.innerHTML = `
-        <div class="loading-box">
-            <h2 style="color:#6c5ce7;">⏳ Submitting...</h2>
-            <p class="loading-text">Please wait while we save your marks.</p>
+        <div style="text-align:center; padding:40px;">
+            <h2 style="color:var(--secondary-color);">⏳ Sending Results...</h2>
+            <p>Please wait while we save your score.</p>
         </div>
     `;
 
@@ -436,6 +414,8 @@ function submitToGoogleSheet() {
     formData.append("class", studentClass);
     formData.append("score", score);
     formData.append("total", data.length);
+    // 可选：如果你想在后台收集邮箱，可以取消下面注释
+    // formData.append("email", studentEmail); 
 
     fetch(SCRIPT_URL, {
         method: 'POST',
@@ -451,48 +431,32 @@ function submitToGoogleSheet() {
     });
 }
 
-// ====== 4. 结果显示 ======
 function showFinalResult(isSuccess) {
-    let statusMessage = "";
-    if (isSuccess) {
-        statusMessage = `<div style="color: #27ae60; background: #eafaf1; padding: 15px; border-radius: 12px; margin: 20px 0; border:1px solid #c3e6cb;">
-            ✅ <strong>Success!</strong> Your results have been sent to the teacher.
+    let msg = isSuccess ? 
+        `<div class="result-box" style="background:#eafaf1; color:#2ecc71; border:2px solid #2ecc71;">
+            ✅ <strong>Success!</strong> Your result has been submitted.
+        </div>` : 
+        `<div class="result-box" style="background:#fdedec; color:#e74c3c; border:2px solid #e74c3c;">
+            ⚠️ <strong>Connection Error!</strong> Please screenshot this page and send to your teacher.
         </div>`;
-    } else {
-        statusMessage = `<div style="color: #c0392b; background: #fdedec; padding: 15px; border-radius: 12px; margin: 20px 0; border:1px solid #f5c6cb;">
-            ⚠️ <strong>Connection Error!</strong> Please take a screenshot of this page and send it to your teacher.
-        </div>`;
-    }
 
     quizContent.innerHTML = `
-        <div style="text-align:center; padding: 20px;">
-            <h2 style="color:#2d3436;">Good Job, ${studentName}!</h2>
-            <p style="font-size:1.1rem; color:#636e72;">Class: ${studentClass}</p>
+        <div style="text-align:center; padding: 30px;">
+            <h2>Good Job, ${studentName}!</h2>
+            <p style="color:#666;">Class: ${studentClass}</p>
             
-            <div style="
-                font-size: 4rem; 
-                margin: 25px 0; 
-                color: #6c5ce7; 
-                font-weight: 800; 
-                text-shadow: 2px 2px 0px rgba(0,0,0,0.1);
-                font-family: 'Nunito', sans-serif;">
+            <div style="font-size: 4rem; margin: 20px 0; color: var(--primary-color); font-weight:bold;">
                 ${score} / ${data.length}
             </div>
             
-            ${statusMessage}
+            ${msg}
             
-            <button id="reloadBtn" style="
-                font-size: 1.1rem; padding: 12px 30px; 
-                background: #b2bec3; border: none; border-radius: 50px; 
-                cursor: pointer; color:white; margin-top:20px; font-weight:bold;">
+            <button onclick="location.reload()" style="
+                margin-top:20px; padding:10px 20px; border:none; background:#ccc; border-radius:20px; cursor:pointer;">
                 Start Again
             </button>
         </div>
     `;
-    
-    document.getElementById('reloadBtn').addEventListener('click', () => {
-        location.reload(); 
-    });
 }
 </script>
 </body>

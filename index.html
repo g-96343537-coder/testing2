@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Year 4 English Quiz (Prepositions)</title>
+<title>Year 5 English Quiz (Prepositions)</title>
 <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 <script src="https://accounts.google.com/gsi/client" async defer></script>
 <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&display=swap" rel="stylesheet">
@@ -11,19 +11,19 @@
 <style>
 /* ====== 全局样式 (Global Styles) ====== */
 :root {
-  --primary-color: #4a90e2; /* 活泼的亮蓝色 */
-  --secondary-color: #ff9f43; /* 活力橙色 */
-  --success-green: #2ecc71;
-  --error-red: #ee5253;
-  --text-dark: #2c3e50;
-  --card-bg: rgba(255, 255, 255, 0.85); /* 半透明白色 */
+  --primary-color: #00a8ff; /* 鲜艳的天蓝 */
+  --secondary-color: #fbc531; /* 柠檬黄 */
+  --success-green: #4cd137;
+  --error-red: #e84118;
+  --text-dark: #2f3640;
+  --card-bg: rgba(255, 255, 255, 0.9); /* 半透明白色 */
 }
 
 body {
-  font-family: 'Comic Neue', 'Comic Sans MS', sans-serif; /* 儿童风格字体 */
+  font-family: 'Comic Neue', 'Comic Sans MS', sans-serif;
   font-size: 20px;
-  /* 背景图：明亮的卡通风景，适合儿童 */
-  background: url('https://images.hdqwalls.com/wallpapers/red-panda-cute-25.jpg') no-repeat center center fixed;
+  /* 背景图：更适合五年级的活力背景 */
+  background: url('https://wallpaperaccess.com/full/457704.jpg') no-repeat center center fixed;
   background-size: cover;
   min-height: 100vh;
   padding: 20px;
@@ -36,22 +36,22 @@ body {
 
 #wrapper {
   background: var(--card-bg);
-  /* 玻璃拟态效果：背景模糊 */
-  backdrop-filter: blur(10px); 
-  -webkit-backdrop-filter: blur(10px);
+  /* 玻璃拟态效果 */
+  backdrop-filter: blur(8px); 
+  -webkit-backdrop-filter: blur(8px);
   padding: 35px;
-  border-radius: 30px; /* 更圆润的边角 */
+  border-radius: 30px;
   max-width: 750px;
   width: 100%;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.2); /* 柔和阴影 */
-  border: 4px solid #fff; /* 白色边框增加可爱感 */
+  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+  border: 4px solid #fff;
 }
 
 h1 {
   font-size: 2.5rem;
   text-align: center;
   margin-bottom: 20px;
-  color: var(--primary-color);
+  color: #0984e3;
   text-shadow: 2px 2px 0px #fff;
   font-weight: 700;
   letter-spacing: 1px;
@@ -77,7 +77,7 @@ h1 {
   width: 80%;
   padding: 15px;
   font-size: 1.2rem;
-  border: 3px solid #dfe4ea;
+  border: 3px solid #dcdde1;
   border-radius: 20px;
   background: #fff;
   cursor: pointer;
@@ -86,17 +86,17 @@ h1 {
   color: #2f3542;
 }
 .input-group select:focus {
-  border-color: var(--secondary-color);
+  border-color: var(--primary-color);
   outline: none;
-  box-shadow: 0 0 10px rgba(255, 159, 67, 0.3);
+  box-shadow: 0 0 10px rgba(0, 168, 255, 0.3);
 }
 
 /* Google 按钮区域 */
 .google-area {
-  background: rgba(255, 255, 255, 0.6);
+  background: rgba(255, 255, 255, 0.7);
   padding: 25px;
   border-radius: 25px;
-  border: 3px dashed var(--primary-color);
+  border: 3px dashed #74b9ff;
   margin-top: 20px;
   display: flex;
   flex-direction: column;
@@ -105,7 +105,7 @@ h1 {
 
 .google-area h3 {
   margin-top: 0;
-  color: var(--primary-color);
+  color: #0984e3;
   font-size: 1.3rem;
 }
 
@@ -127,18 +127,18 @@ h1 {
   font-size: 1.5rem;
   padding: 12px 40px;
   background: var(--secondary-color);
-  color: white;
+  color: #2f3640;
   border: none;
   border-radius: 50px;
   cursor: pointer;
   margin-top: 20px;
-  box-shadow: 0 6px 0 #e67e22; /* 3D 按钮效果 */
+  box-shadow: 0 6px 0 #e1b12c;
   transition: transform 0.1s;
   font-family: inherit;
   font-weight: bold;
 }
 #manualStartBtn:active { transform: translateY(6px); box-shadow: none; }
-#manualStartBtn:hover { background: #ffaf40; }
+#manualStartBtn:hover { background: #fbc531; filter: brightness(1.05); }
 
 /* ====== 测验区域样式 ====== */
 #quiz-content { display: none; }
@@ -155,7 +155,7 @@ h1 {
 
 #q-index { 
     font-weight: bold; 
-    color: var(--primary-color); 
+    color: #0984e3; 
     margin-bottom: 10px; 
     font-size: 1.2rem;
 }
@@ -182,7 +182,7 @@ h1 {
 }
 .opt:hover { 
     background: #f0f8ff; 
-    border-color: var(--primary-color); 
+    border-color: #74b9ff; 
     transform: scale(1.02);
 }
 .opt.correct { background: #dff9fb; border-color: #2ecc71; color: #27ae60; }
@@ -193,12 +193,12 @@ h1 {
 #nextBtn {
   font-size: 1.4rem;
   padding: 14px 40px;
-  background: var(--primary-color);
+  background: #0984e3;
   color: white;
   border: none;
   border-radius: 40px;
   cursor: pointer;
-  box-shadow: 0 6px 0 #2980b9;
+  box-shadow: 0 6px 0 #06528d;
   font-family: inherit;
   font-weight: bold;
   transition: all 0.1s;
@@ -210,7 +210,7 @@ h1 {
     font-size: 1.8rem; 
     margin-top: 25px; 
     font-weight: 800; 
-    color: var(--secondary-color); 
+    color: #e84118; 
     text-shadow: 1px 1px 0 #fff; 
 }
 
@@ -233,21 +233,21 @@ h1 {
 <body>
 
 <div id="wrapper">
-  <h1>English Prepositions <br><span style="font-size:0.7em; color:#ff9f43;">(Year 4)</span></h1>
+  <h1>English Prepositions <br><span style="font-size:0.7em; color:#e1b12c;">(Year 5)</span></h1>
 
   <div id="start-screen">
       <div class="input-group">
           <label for="student-class">Step 1: Choose Your Class (选择班级)</label>
           <select id="student-class">
               <option value="">-- Sila Pilih Kelas --</option>
-              <option value="4M">4M</option>
-              <option value="4K">4K</option>
-              <option value="4B">4B</option>
-              <option value="4H">4H</option>
-              <option value="4J">4J</option>
-              <option value="4U">4U</option>
-              <option value="4P">4P</option>
-              <option value="4C">4C</option>
+              <option value="5M">5M</option>
+              <option value="5K">5K</option>
+              <option value="5B">5B</option>
+              <option value="5H">5H</option>
+              <option value="5J">5J</option>
+              <option value="5U">5U</option>
+              <option value="5P">5P</option>
+              <option value="5C">5C</option>
           </select>
       </div>
 
@@ -290,34 +290,34 @@ h1 {
 </div>
 
 <script>
-// ====== Google Script URL (保持不变) ======
-const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwd9UKzaZRU8OAVn2deSCuOLWsMppPuR8ZycCIS2WAGXh3DIPpzLUkLyshuyeV9emt-5A/exec";
+// ====== Google Script URL (已更新) ======
+const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyQJnZM0Hhe2_LBdSlpShy5qFqexV6WDADtJYKI_7oyGS5wkjeG8gi94ZyUc8GUiZ3O/exec";
 
-// ====== 题目数据 (Year 4 Prepositions - 4 Options) ======
+// ====== 题目数据 (Year 5 Prepositions) ======
 const rawData = `
-1,The teacher shared the sweets ____ all the students in the class. A. between B. among C. through D. against,B
-2,The train went ____ the dark tunnel. A. across B. over C. through D. on,C
-3,Please do not talk ____ the examination. A. during B. at C. on D. by,A
-4,He leaned his bicycle ____ the wall before entering the shop. A. on B. against C. over D. to,B
-5,My father goes to work ____ car every morning. A. in B. on C. with D. by,D
-6,The earth moves ____ the sun. A. around B. across C. through D. between,A
-7,The dog ran ____ the gate when it saw a stranger. A. towards B. on C. at D. in,A
-8,There is a bridge ____ the river. A. under B. through C. over D. in,C
-9,We usually have our assembly ____ Monday mornings. A. in B. at C. on D. during,C
-10,The secret is just ____ you and me. A. among B. between C. to D. with,B
+1,My brother is very good ____ playing the piano. A. in B. on C. at D. with,C
+2,We have lived in this house ____ 2015. A. for B. since C. by D. until,B
+3,Please hand in your homework ____ Friday. A. by B. until C. on D. at,A
+4,The tourists are afraid ____ the fierce dog. A. with B. at C. by D. of,D
+5,He is interested ____ learning new languages. A. in B. on C. at D. for,A
+6,The passengers got ____ the bus carefully when it stopped. A. out B. off C. of D. away,B
+7,The library is open ____ 8:00 a.m. to 5:00 p.m. A. between B. during C. from D. since,C
+8,Come and sit ____ me on this bench. A. besides B. beside C. among D. at,B
+9,Malaysia is famous ____ its delicious food. A. for B. with C. at D. by,A
+10,She has been waiting ____ the bus for twenty minutes. A. to B. at C. for D. by,C
 `;
 
-// ====== 数据处理逻辑 (已更新为处理 4 个选项) ======
+// ====== 数据处理逻辑 ======
 const data = rawData.trim().split("\n").map(line=>{
   const parts = line.split(",");
-  const answerChar = parts.pop().trim().toUpperCase(); // 答案字母
-  const full = parts.join(",").trim(); // 完整题目+选项
+  const answerChar = parts.pop().trim().toUpperCase(); 
+  const full = parts.join(",").trim(); 
   
-  // 查找 A. 的位置来分割题目和选项
+  // 分离题目和选项
   const optStart = full.indexOf("A.");
   const qtext = full.slice(0, optStart).trim();
   
-  // 使用正则分割 A-D 选项
+  // 正则分割 A. B. C. D.
   const optParts = full.slice(optStart).split(/\s(?=[A-D]\.\s)/).map(s=>s.trim().replace(/^[A-D]\.\s*/, ""));
   
   // 答案映射: A=0, B=1, C=2, D=3
@@ -344,7 +344,7 @@ const gBtn = document.querySelector('.g_id_signin');
 
 document.getElementById('total').textContent = data.length;
 
-// ====== 1. Google 登录逻辑 (保持不变) ======
+// ====== 1. Google 登录逻辑 ======
 
 function parseJwt (token) {
     var base64Url = token.split('.')[1];
@@ -386,7 +386,7 @@ manualStartBtn.addEventListener('click', () => {
     startQuiz();
 });
 
-// ====== 2. 测验逻辑 (已支持4选项) ======
+// ====== 2. 测验逻辑 ======
 function startQuiz() {
     startScreen.style.display = 'none';
     quizContent.style.display = 'block';
@@ -414,9 +414,9 @@ function loadQuestion(){
   q.options.forEach((opt,i)=>{
     const div = document.createElement('div');
     div.className='opt';
-    // 添加 A, B, C, D 标签
+    // 选项 A, B, C, D 标签
     const label = String.fromCharCode(65 + i); 
-    div.innerHTML = `<span style="font-weight:bold; color:var(--primary-color); margin-right:8px;">${label}.</span> ${opt}`;
+    div.innerHTML = `<span style="font-weight:bold; color:#0984e3; margin-right:8px;">${label}.</span> ${opt}`;
     div.addEventListener('click',()=>selectOption(div,i));
     optsDiv.appendChild(div);
   });
@@ -461,7 +461,7 @@ document.getElementById('nextBtn').addEventListener('click', () => {
 function submitToGoogleSheet() {
     quizContent.innerHTML = `
         <div style="text-align:center; padding:40px;">
-            <h2 style="color:var(--secondary-color);">⏳ Sending Results...</h2>
+            <h2 style="color:#fbc531;">⏳ Sending Results...</h2>
             <p>Please wait while we save your score.</p>
         </div>
     `;
@@ -500,7 +500,7 @@ function showFinalResult(isSuccess) {
             <h2>Great Job, ${studentName}!</h2>
             <p style="color:#666;">Class: ${studentClass}</p>
             
-            <div style="font-size: 4rem; margin: 20px 0; color: var(--primary-color); font-weight:bold;">
+            <div style="font-size: 4rem; margin: 20px 0; color: #0984e3; font-weight:bold;">
                 ${score} / ${data.length}
             </div>
             
@@ -516,4 +516,3 @@ function showFinalResult(isSuccess) {
 </script>
 </body>
 </html>
-
